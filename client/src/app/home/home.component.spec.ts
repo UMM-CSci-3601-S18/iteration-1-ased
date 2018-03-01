@@ -28,8 +28,20 @@ describe('Home', () => {
         el = de.nativeElement;
     });
 
+    // Not sure if this test will be useful to us. Commenting it out for now
+    /*
     it('displays a greeting', () => {
         fixture.detectChanges();
         expect(el.textContent).toContain(component.text);
+    });
+    */
+
+    it('Should display the emojis', () => {
+        fixture.detectChanges();
+        expect(element(by.id('emojis'))).toBeDefined();
+    });
+
+    it('Should have all the emojis we put in', () => {
+        expect(emojiList.emojis.length).toBe(4);
     });
 });
