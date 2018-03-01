@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-//import {UserListService} from './user-list.service';
+import {EmojiSelectorService} from './emoji-selector.service';
 //import {User} from './user';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
