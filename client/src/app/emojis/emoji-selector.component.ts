@@ -22,6 +22,9 @@ export class EmojiSelectorComponent implements OnInit {
 //    public userAge: number;
 //    public userCompany: string;
 
+    submitEmoji(): void {
+
+    }
 
     ngOnInit(): void {
 

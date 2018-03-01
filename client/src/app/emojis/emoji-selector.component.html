@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+
+<div layout-gt-sm="row">
+    <div flex-gt-sm="80" flex-offset-gt-sm="10">
+        <mat-card>
+            (ツ) <input id="happy" type="radio" name="emoji">
+            |
+            ☹ <input id="sad" type="radio" name="emoji">
+            |
+            ☠ <input id="angry" type="radio" name="emoji">
+            |
+            (._.) <input id="neutral" type="radio" name="emoji">
+
+            <button mat-raised-button id="submit" color="primary" #input type="button" (click)="submitEmoji()">Submit</button>
+
+        </mat-card>
+    </div>
+</div>
