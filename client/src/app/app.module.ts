@@ -9,6 +9,7 @@ import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 import {UserListComponent} from './users/user-list.component';
 import {UserListService} from './users/user-list.service';
+import {EmojiSelectorComponent} from './emojis/emoji-selector.component';
 import {Routing} from './app.routes';
 import {APP_BASE_HREF} from '@angular/common';
 
@@ -27,7 +28,8 @@ import {AddUserComponent} from './users/add-user.component';
         AppComponent,
         HomeComponent,
         UserListComponent,
-        AddUserComponent
+        AddUserComponent,
+        EmojiSelectorComponent
     ],
     providers: [
         UserListService,
