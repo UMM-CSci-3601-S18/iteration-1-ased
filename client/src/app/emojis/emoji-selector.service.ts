@@ -9,7 +9,7 @@ import {environment} from '../../environments/environment';
 
 @Injectable()
 export class EmojiSelectorService {
-    readonly baseUrl: string = environment.API_URL + 'emojis';
+    readonly baseUrl: string = environment.API_URL + 'emoji-selector';
     private userUrl: string = this.baseUrl;
 
 }
