@@ -3,14 +3,36 @@
 <div layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <mat-card>
+
             <mat-card-title id="emoji-selector-title">Emoji Selector</mat-card-title>
-            (ツ) <input id="happy" type="radio" name="emoji">
-            |
-            ☹ <input id="sad" type="radio" name="emoji">
-            |
-            ☠ <input id="angry" type="radio" name="emoji">
-            |
-            (._.) <input id="neutral" type="radio" name="emoji">
+
+            <input id="happy" type="radio" class="input-hidden" name="emoji" />
+            <label for="happy">
+                <img
+                    src="../../assets/Happy-emoji.png"
+                    alt="Happy" />
+            </label>
+
+            <input id="sad" type="radio" class="input-hidden" name="emoji">
+            <label for="sad">
+                <img
+                    src="../../assets/Sad-emoji.png"
+                    alt="Sad" />
+            </label>
+
+            <input id="angry" type="radio" class="input-hidden" name="emoji">
+            <label for="angry">
+                <img
+                    src="../../assets/Angry-emoji.png"
+                    alt="Angry" />
+            </label>
+
+            <input id="neutral" type="radio" class="input-hidden" name="emoji">
+            <label for="neutral">
+                <img
+                    src="../../assets/Neutral-emoji.png"
+                    alt="Neutral" />
+            </label>
 
             <button mat-raised-button id="submit" color="primary" #input type="button" (click)="submitEmoji()">Submit</button>
 
