@@ -4,6 +4,9 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import spark.Request;
 import spark.Response;
+import umm3601.Emojis.EmojiController;
+import umm3601.Emojis.EmojiRequestHandler;
+import umm3601.goals.GoalsController;
 
 import java.io.IOException;
 
@@ -12,13 +15,16 @@ import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class Server {
-    private static final String userDatabaseName = "dev";
+    private static final String emojiDataBaseName = "dev";
     private static final int serverPort = 4567;
 
     public static void main(String[] args) throws IOException {
 
         MongoClient mongoClient = new MongoClient();
-        MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
+        MongoDatabase emojiDatabase = mongoClient.getDatabase(emojiDataBaseName);
+
+        EmojiController emojiController = new EmojiController(emojiDatabase);
+        EmojiRequestHandler emojiRequestHandler = new EmojiRequestHandler(emojiController);
 
         //Configure Spark
         port(serverPort);
@@ -48,6 +54,9 @@ public class Server {
         redirect.get("", "/");
 
         redirect.get("/", "http://localhost:9000");
+
+        // Add an emoji to the database
+        get("api/emojis/new", emojiRequestHandler::submitEmoji);
 
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.
