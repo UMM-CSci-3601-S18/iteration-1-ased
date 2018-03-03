@@ -28,6 +28,14 @@ export class EmojiSelectorService {
     }
 
 
+    //Used to determine what link to send in response to emoji
+    emojiResponder(value: string): string {
+        let response = '';
+
+        //if value = sad, set response = happy link
+
+        return response;
+    }
 
 
 }

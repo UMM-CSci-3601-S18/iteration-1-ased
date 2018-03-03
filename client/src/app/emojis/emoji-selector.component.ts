@@ -42,6 +42,8 @@ export class EmojiSelectorComponent implements OnInit {
 
 
         this.emojiSelectorService.addNewEmoji(this.emojidoc);
+
+        this.emojiSelectorService.emojiResponder(value);
     }
 
     ngOnInit(): void {
