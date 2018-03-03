@@ -6,35 +6,54 @@
 
             <mat-card-title id="emoji-selector-title">Emoji Selector</mat-card-title>
 
-            <input id="happy" type="radio" class="input-hidden" name="emoji" />
+            <input matInput #input id="emojiUserField" placeholder="User" [(ngModel)]="emojiUser">
+
+            <input type="datetime-local" [(ngModel)]="emojiTime"> <!-- -->
+
+            <p></p>
+            <form name="emoji_selector">
+
+            <input id="happy" type="radio" class="input-hidden" name="emoji" [(ngModel)]="emojiVal" value="happy">
             <label for="happy">
                 <img
                     src="../../assets/Happy-emoji.png"
                     alt="Happy" />
             </label>
 
-            <input id="sad" type="radio" class="input-hidden" name="emoji">
+            <input  id="sad" type="radio" class="input-hidden" name="emoji" [(ngModel)]="emojiVal" value="sad">
             <label for="sad">
                 <img
                     src="../../assets/Sad-emoji.png"
                     alt="Sad" />
             </label>
 
-            <input id="angry" type="radio" class="input-hidden" name="emoji">
+            <input  id="angry" type="radio" class="input-hidden" name="emoji" [(ngModel)]="emojiVal" value="angry">
             <label for="angry">
                 <img
                     src="../../assets/Angry-emoji.png"
                     alt="Angry" />
             </label>
 
-            <input id="neutral" type="radio" class="input-hidden" name="emoji">
+            <input  id="neutral" type="radio" class="input-hidden" name="emoji" [(ngModel)]="emojiVal" value="neutral">
             <label for="neutral">
                 <img
                     src="../../assets/Neutral-emoji.png"
                     alt="Neutral" />
             </label>
 
-            <button mat-raised-button id="submit" color="primary" #input type="button" (click)="submitEmoji()">Submit</button>
+
+            </form>
+
+            <p>
+            user: {{emojiUser}}
+            |
+            value: {{emojiVal}}
+            |
+            time: {{emojiTime}}
+            </p>
+
+            <button mat-raised-button id="submit" color="primary" #input type="button"
+                    >Submit</button>
 
         </mat-card>
     </div>
