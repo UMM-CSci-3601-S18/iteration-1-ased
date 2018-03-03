@@ -16,7 +16,7 @@ export class EmojiSelectorService {
     constructor(private http: HttpClient) {
     }
 
-    /*addNewEmoji(newEmoji: Emoji): Observable<{'$oid': string}> {
+    addNewEmoji(newEmoji: Emoji): Observable<{'$oid': string}> {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
@@ -25,7 +25,7 @@ export class EmojiSelectorService {
 
         //Send post request to add a new to-do with the to-do data as the contents with specified headers.
         return this.http.post<{'$oid': string}>(this.emojiUrl + "/new",newEmoji, httpOptions);
-    }*/
+    }
 
 
 

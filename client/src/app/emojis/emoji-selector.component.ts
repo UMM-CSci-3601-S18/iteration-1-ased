@@ -26,8 +26,8 @@ export class EmojiSelectorComponent implements OnInit {
     public emojiUser: string;
     public emojiTime: string;
 
-  //  constructor(public emojiSelectorService: EmojiSelectorService, public dialog: MatDialog) {
-  //  }
+    constructor(public emojiSelectorService: EmojiSelectorService, public dialog: MatDialog) {
+    }
 
 
     submitEmoji(user: string, value: string, time: string): void {
@@ -37,7 +37,7 @@ export class EmojiSelectorComponent implements OnInit {
         this.emojidoc.time_stamp = time;
 
 
-       // this.emojiSelectorService.addNewEmoji(this.emojidoc);
+        this.emojiSelectorService.addNewEmoji(this.emojidoc);
     }
 
     ngOnInit(): void {
