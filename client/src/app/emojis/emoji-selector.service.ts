@@ -10,6 +10,24 @@ import {environment} from '../../environments/environment';
 @Injectable()
 export class EmojiSelectorService {
     readonly baseUrl: string = environment.API_URL + 'emoji-selector';
-    private userUrl: string = this.baseUrl;
+    private emojiUrl: string = this.baseUrl;
+
+
+    constructor(private http: HttpClient) {
+    }
+
+    /*addNewEmoji(newEmoji: Emoji): Observable<{'$oid': string}> {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            }),
+        };
+
+        //Send post request to add a new to-do with the to-do data as the contents with specified headers.
+        return this.http.post<{'$oid': string}>(this.emojiUrl + "/new",newEmoji, httpOptions);
+    }*/
+
+
+
 
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EmojiSelectorService} from './emoji-selector.service';
-//import {User} from './user';
+import {Emoji} from './emoji';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
 //import {AddUserComponent} from './add-user.component';
@@ -13,8 +13,8 @@ import {MatDialog} from '@angular/material';
 
 export class EmojiSelectorComponent implements OnInit {
     // These are public so that tests can reference them (.spec.ts)
-//    public users: User[];
-//    public filteredUsers: User[];
+    public emojis: Emoji[];
+    public emojidoc: Emoji;
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
@@ -22,8 +22,22 @@ export class EmojiSelectorComponent implements OnInit {
 //    public userAge: number;
 //    public userCompany: string;
 
-    submitEmoji(): void {
+    public emojiVal: string;
+    public emojiUser: string;
+    public emojiTime: string;
 
+  //  constructor(public emojiSelectorService: EmojiSelectorService, public dialog: MatDialog) {
+  //  }
+
+
+    submitEmoji(user: string, value: string, time: string): void {
+        this.emojidoc._id = '';
+        this.emojidoc.type = value;
+        this.emojidoc.user = user;
+        this.emojidoc.time_stamp = time;
+
+
+       // this.emojiSelectorService.addNewEmoji(this.emojidoc);
     }
 
     ngOnInit(): void {
