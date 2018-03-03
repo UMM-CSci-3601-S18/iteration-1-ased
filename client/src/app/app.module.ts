@@ -7,11 +7,15 @@ import { MATERIAL_COMPATIBILITY_MODE } from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
+import {UserListComponent} from './users/user-list.component';
+import {UserListService} from './users/user-list.service';
+import {EmojiSelectorService} from "./emojis/emoji-selector.service";
 import {EmojiSelectorComponent} from './emojis/emoji-selector.component';
 import {Routing} from './app.routes';
 import {APP_BASE_HREF} from '@angular/common';
 
 import {CustomModule} from './custom.module';
+import {AddUserComponent} from "./users/add-user.component";
 
 
 @NgModule({
@@ -24,13 +28,18 @@ import {CustomModule} from './custom.module';
     declarations: [
         AppComponent,
         HomeComponent,
+        UserListComponent,
+        AddUserComponent,
         EmojiSelectorComponent
     ],
     providers: [
+        UserListService,
+        EmojiSelectorService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
     entryComponents: [
+        AddUserComponent,
     ],
     bootstrap: [AppComponent]
 })
