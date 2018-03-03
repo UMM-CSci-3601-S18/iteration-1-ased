@@ -8,7 +8,7 @@
 
             <input matInput #input id="emojiUserField" placeholder="User" [(ngModel)]="emojiUser">
 
-            <input type="datetime-local" [(ngModel)]="emojiTime"> <!-- -->
+              <input type="datetime-local" [(ngModel)]="emojiTime"> <!-- -->
 
             <p></p>
             <form name="emoji_selector">
@@ -49,7 +49,7 @@
             |
             value: {{emojiVal}}
             |
-            time: {{emojiTime}}
+            time: {{time()}}
             </p>
 
             <button mat-raised-button id="submit" color="primary" #input type="button"

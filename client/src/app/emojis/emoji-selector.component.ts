@@ -26,15 +26,19 @@ export class EmojiSelectorComponent implements OnInit {
     public emojiUser: string;
     public emojiTime: string;
 
+
     constructor(public emojiSelectorService: EmojiSelectorService, public dialog: MatDialog) {
     }
 
+    time(){
+        return Date();
+    }
 
     submitEmoji(user: string, value: string, time: string): void {
         this.emojidoc._id = '';
         this.emojidoc.type = value;
         this.emojidoc.user = user;
-        this.emojidoc.time_stamp = time;
+        this.emojidoc.time_stamp = '';
 
 
         this.emojiSelectorService.addNewEmoji(this.emojidoc);
