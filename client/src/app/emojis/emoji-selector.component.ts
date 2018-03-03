@@ -34,11 +34,11 @@ export class EmojiSelectorComponent implements OnInit {
         return Date();
     }
 
-    submitEmoji(user: string, value: string, time: string): void {
+    submitEmoji(user: string, value: string): void {
         this.emojidoc._id = '';
         this.emojidoc.type = value;
         this.emojidoc.user = user;
-        this.emojidoc.time_stamp = '';
+        this.emojidoc.time_stamp = Date();
 
 
         this.emojiSelectorService.addNewEmoji(this.emojidoc);
