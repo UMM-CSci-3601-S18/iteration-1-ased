@@ -23,7 +23,7 @@ public class GoalsController {
     private MongoDatabase database;
     private final MongoCollection<Document> goalsCollection;
 
-    public goalsController(MongoDatabase database) {
+    public GoalsController(MongoDatabase database) {
         gson = new Gson();
         this.database = database;
         goalsCollection = database.getCollection("goals");

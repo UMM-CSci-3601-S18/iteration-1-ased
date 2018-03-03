@@ -7,6 +7,7 @@ import { MATERIAL_COMPATIBILITY_MODE } from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
+import {EmojiSelectorComponent} from './emojis/emoji-selector.component';
 import {Routing} from './app.routes';
 import {APP_BASE_HREF} from '@angular/common';
 
@@ -23,6 +24,7 @@ import {CustomModule} from './custom.module';
     declarations: [
         AppComponent,
         HomeComponent,
+        EmojiSelectorComponent
     ],
     providers: [
         {provide: APP_BASE_HREF, useValue: '/'},
