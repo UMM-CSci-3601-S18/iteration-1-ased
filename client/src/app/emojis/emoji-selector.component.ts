@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Inject} from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {EmojiSelectorService} from './emoji-selector.service';
 import {Emoji} from './emoji';
 import {Observable} from 'rxjs/Observable';
-import {MatDialog} from '@angular/material';
 //import {AddUserComponent} from './add-user.component';
 
 @Component({
@@ -24,7 +24,6 @@ export class EmojiSelectorComponent implements OnInit {
 
     public emojiVal: string;
     public emojiUser: string;
-    public emojiTime: string;
 
 
     constructor(public emojiSelectorService: EmojiSelectorService, public dialog: MatDialog) {
@@ -36,7 +35,7 @@ export class EmojiSelectorComponent implements OnInit {
 
     submitEmoji(user: string, value: string): void {
         this.emojidoc._id = '';
-        this.emojidoc.type = value;
+        this.emojidoc.value = value;
         this.emojidoc.user = user;
         this.emojidoc.time_stamp = Date();
 
@@ -46,6 +45,17 @@ export class EmojiSelectorComponent implements OnInit {
         //use mat-dialog
 
         //mat-dialog will make popup
+    }
+
+    openDialog(): void {
+        let value = this.emojiVal;
+
+        let dialogRef = this.dialog.open(EmojiSelectorResponseDialog, {
+            width: '75vw',
+            data: { name: this.emojiUser,
+                writtenResponse: this.emojiSelectorService.writtenResponse(value),
+                mediaResponse: this.emojiSelectorService.emojiResponder(value)}
+        });
 
     }
 
@@ -57,4 +67,20 @@ export class EmojiSelectorComponent implements OnInit {
     ngOnInit(): void {
 
     }
+}
+
+@Component({
+    selector: 'emoji-selector-response',
+    templateUrl: 'emoji-selector-response.html',
+})
+export class EmojiSelectorResponseDialog {
+
+    constructor(
+        public dialogRef: MatDialogRef<EmojiSelectorResponseDialog>,
+        @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
+
 }

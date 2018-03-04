@@ -1,6 +1,6 @@
 export interface Emoji {
     _id: string;
     user: string;
-    type: string;
+    value: string;
     time_stamp: string;
 }

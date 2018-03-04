@@ -58,5 +58,34 @@ export class EmojiSelectorService {
         return response;
     }
 
+    writtenResponse(value: string): string {
+        let response = '';
+
+        //if value = sad, set response = happy link
+        if (value == "happy"){
+            response = "Glad to hear it!";
+        }
+        else{
+            if (value == "sad"){
+                response = "Sorry to hear that. Maybe this will cheer you up!";
+            }
+            else{
+                if (value == "angry"){
+                    response = "It's natural to get mad sometimes. " +
+                        "You need to be able to let that frustration out.";
+                }
+                else{
+                    if (value == "neutral"){
+                        response = "Nice to hear.";
+                    }
+                    else {
+                        response = "Let me know how you're feeling!"
+                    }
+                }
+            }
+        }
+
+        return response;
+    }
 
 }

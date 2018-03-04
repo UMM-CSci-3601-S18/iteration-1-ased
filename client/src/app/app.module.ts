@@ -11,6 +11,7 @@ import {UserListComponent} from './users/user-list.component';
 import {UserListService} from './users/user-list.service';
 import {EmojiSelectorService} from "./emojis/emoji-selector.service";
 import {EmojiSelectorComponent} from './emojis/emoji-selector.component';
+import {EmojiSelectorResponseDialog} from './emojis/emoji-selector.component';
 import {Routing} from './app.routes';
 import {APP_BASE_HREF} from '@angular/common';
 
@@ -30,7 +31,8 @@ import {AddUserComponent} from "./users/add-user.component";
         HomeComponent,
         UserListComponent,
         AddUserComponent,
-        EmojiSelectorComponent
+        EmojiSelectorComponent,
+        EmojiSelectorResponseDialog
     ],
     providers: [
         UserListService,
@@ -40,6 +42,7 @@ import {AddUserComponent} from "./users/add-user.component";
     ],
     entryComponents: [
         AddUserComponent,
+        EmojiSelectorResponseDialog,
     ],
     bootstrap: [AppComponent]
 })
