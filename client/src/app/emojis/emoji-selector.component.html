@@ -17,28 +17,32 @@
             <label for="happy">
                 <img
                     src="../../assets/Happy-emoji.png"
-                    alt="Happy" />
+                    alt="Happy"
+                    class="emoji_img"/>
             </label>
 
             <input  id="sad" type="radio" class="input-hidden" name="emoji" [(ngModel)]="emojiVal" value="sad">
             <label for="sad">
                 <img
                     src="../../assets/Sad-emoji.png"
-                    alt="Sad" />
+                    alt="Sad"
+                    class="emoji_img"/>
             </label>
 
             <input  id="angry" type="radio" class="input-hidden" name="emoji" [(ngModel)]="emojiVal" value="angry">
             <label for="angry">
                 <img
                     src="../../assets/Angry-emoji.png"
-                    alt="Angry" />
+                    alt="Angry"
+                    class="emoji_img"/>
             </label>
 
             <input  id="neutral" type="radio" class="input-hidden" name="emoji" [(ngModel)]="emojiVal" value="neutral">
             <label for="neutral">
                 <img
                     src="../../assets/Neutral-emoji.png"
-                    alt="Neutral" />
+                    alt="Neutral"
+                    class="emoji_img"/>
             </label>
 
 
@@ -49,6 +53,7 @@
             |
             value: {{emojiVal}}
             |
+
             time: {{time()}}
             </p>
 
@@ -56,5 +61,9 @@
                   (onclick)="submitEmoji(emojiUser, emojiVal)"  >Submit</button>
 
         </mat-card>
+        <p id="debugline"> this will change to nonsense</p>
+        {{emojiResponse(emojiVal)}}
+        <img src={{emojiResponse(emojiVal)}} id="response_image">
+
     </div>
 </div>

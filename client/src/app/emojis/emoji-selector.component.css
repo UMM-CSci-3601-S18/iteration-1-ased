@@ -4,7 +4,7 @@
     left: -9999px;
 }
 
-img {
+.emoji_img {
     width: 50px;
 }
 
@@ -13,7 +13,9 @@ input[type=radio]:checked + label>img {
     border-radius: 100px;
 }
 
-
+#response_image {
+    width: 400px;
+}
 
 
 

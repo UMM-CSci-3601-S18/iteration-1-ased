@@ -33,6 +33,27 @@ export class EmojiSelectorService {
         let response = '';
 
         //if value = sad, set response = happy link
+        if (value == "happy"){
+            response = "../../assets/Happy-emoji.png";
+        }
+        else{
+            if (value == "sad"){
+            response = "../../assets/Sad-emoji.png";
+            }
+            else{
+                if (value == "angry"){
+            response = "../../assets/Angry-emoji.png";
+                }
+                else{
+                    if (value == "neutral"){
+            response = "../../assets/Neutral-emoji.png";
+                    }
+                    else {
+            response = "https://thumbs.gfycat.com/FewDearestFairybluebird-size_restricted.gif"
+                    }
+                }
+            }
+        }
 
         return response;
     }

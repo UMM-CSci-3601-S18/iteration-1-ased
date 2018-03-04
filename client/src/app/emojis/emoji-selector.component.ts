@@ -41,10 +41,18 @@ export class EmojiSelectorComponent implements OnInit {
         this.emojidoc.time_stamp = Date();
 
 
-        this.emojiSelectorService.addNewEmoji(this.emojidoc);
+      //  this.emojiSelectorService.addNewEmoji(this.emojidoc);
 
-        this.emojiSelectorService.emojiResponder(value);
+        //use mat-dialog
+
+        //mat-dialog will make popup
+
     }
+
+    emojiResponse(value: string): string{
+        return this.emojiSelectorService.emojiResponder(value);
+    }
+
 
     ngOnInit(): void {
 
