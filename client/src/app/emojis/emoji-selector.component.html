@@ -1,0 +1,66 @@
+
+
+<div layout-gt-sm="row">
+    <div flex-gt-sm="80" flex-offset-gt-sm="10">
+        <mat-card>
+
+            <mat-card-title id="emoji-selector-title">Emoji Selector</mat-card-title>
+
+            <input matInput #input id="emojiUserField" placeholder="User" [(ngModel)]="emojiUser">
+
+            <!-- -->
+
+            <p></p>
+            <form name="emoji_selector">
+
+            <input id="happy" type="radio" class="input-hidden" name="emoji" [(ngModel)]="emojiVal" value="happy">
+            <label for="happy">
+                <img
+                    src="../../assets/Happy-emoji.png"
+                    alt="Happy"
+                    class="emoji_img"/>
+            </label>
+
+            <input  id="sad" type="radio" class="input-hidden" name="emoji" [(ngModel)]="emojiVal" value="sad">
+            <label for="sad">
+                <img
+                    src="../../assets/Sad-emoji.png"
+                    alt="Sad"
+                    class="emoji_img"/>
+            </label>
+
+            <input  id="angry" type="radio" class="input-hidden" name="emoji" [(ngModel)]="emojiVal" value="angry">
+            <label for="angry">
+                <img
+                    src="../../assets/Angry-emoji.png"
+                    alt="Angry"
+                    class="emoji_img"/>
+            </label>
+
+            <input  id="neutral" type="radio" class="input-hidden" name="emoji" [(ngModel)]="emojiVal" value="neutral">
+            <label for="neutral">
+                <img
+                    src="../../assets/Neutral-emoji.png"
+                    alt="Neutral"
+                    class="emoji_img"/>
+            </label>
+
+
+
+
+            <p>
+                user: {{emojiUser}}
+                |
+                value: {{emojiVal}}
+                |
+                time: {{time()}}
+            </p>
+
+            <button mat-raised-button id="submit" color="primary" #input type="button"
+                  (onclick)="submitEmoji(emojiUser, emojiVal)" (click)="openDialog()" >Submit</button>
+            </form>
+        </mat-card>
+
+    </div>
+</div>
+
