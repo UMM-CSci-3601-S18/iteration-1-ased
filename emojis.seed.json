@@ -1,0 +1,4 @@
+[{"_id" : {"$oid" : "random string of characters"},
+"name" : "Steve",
+"value" : "happy",
+"time_stamp" : "1/1/2018 6:45"}]
