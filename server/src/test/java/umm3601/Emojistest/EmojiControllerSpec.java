@@ -137,7 +137,7 @@ public class EmojiControllerSpec
 
     @Test
     public void addEmojiTest(){
-        String newId = emojiController.addNewEmoji("ethan","Ethan","Sad","3/03/2018 22:30");
+        String newId = emojiController.submitEmoji("neutral", "3/06/2018 14:51");
 
         assertNotNull("Add new user should return true when user is added,", newId);
         Map<String, String[]> argMap = new HashMap<>();
