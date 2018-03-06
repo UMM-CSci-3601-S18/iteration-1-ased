@@ -16,7 +16,7 @@ export class GoalListService {
     }
 
     getGoals(goalTitle?: string): Observable<Goal[]> {
-      //  this.filterByTitle(goalTitle);
+        this.filterByTitle(goalTitle);
         return this.http.get<Goal[]>(this.goalUrl);
     }
 
@@ -36,7 +36,7 @@ export class GoalListService {
 
 
 
- /*
+
     filterByTitle(goalTitle?: string): void {
         if (!(goalTitle == null || goalTitle === '')) {
             if (this.parameterPresent('title=') ) {
@@ -62,7 +62,9 @@ export class GoalListService {
             }
         }
     }
-*/
+
+
+
     private parameterPresent(searchParam: string) {
         return this.goalUrl.indexOf(searchParam) !== -1;
     }
@@ -79,7 +81,7 @@ export class GoalListService {
         this.goalUrl = this.goalUrl.substring(0, start) + this.goalUrl.substring(end);
     }
 
-    addNewUser(newGoal: Goal): Observable<{'$oid': string}> {
+    addNewGoal(newGoal: Goal): Observable<{'$oid': string}> {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
