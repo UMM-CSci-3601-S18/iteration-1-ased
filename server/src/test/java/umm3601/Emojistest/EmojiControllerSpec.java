@@ -12,6 +12,7 @@ import org.bson.json.JsonReader;
 import org.bson.types.ObjectId;
 import org.junit.Before;
 import org.junit.Test;
+import umm3601.Emojis.EmojiController;
 
 import java.io.IOException;
 import java.util.*;
@@ -126,7 +127,7 @@ public class EmojiControllerSpec
 
     @Test
     public void getSamById() {
-        String jsonResult = emojiController.getUser(sungjaesId.toHexString());
+        String jsonResult = emojiController.getEmoji(sungjaesId.toHexString());
         Document sungjae = Document.parse(jsonResult);
         assertEquals("Name should match", "Sungjae", sungjae.get("user"));
         String noJsonResult = emojiController.getEmoji(new ObjectId().toString());
