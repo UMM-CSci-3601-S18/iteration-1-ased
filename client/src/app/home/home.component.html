@@ -2,10 +2,13 @@
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <mat-card>
             <mat-card-title id="hello-world">{{ this.text }}</mat-card-title>
-            <mat-card-subtitle>this is a card</mat-card-subtitle>
+            <mat-card-subtitle>Welcome to the first iteration of the Emoji Journal</mat-card-subtitle>
             <mat-divider></mat-divider>
             <mat-card-content>
-                card content
+                What would you like to do?
+                <mat-list>
+                    <a mat-list-item [routerLink]="['/emoji-selector']" (click)="layout.close()" routerLinkActive="nav-active"><mat-icon>touch_app</mat-icon>Emoji Selector</a>
+                </mat-list>
             </mat-card-content>
         </mat-card>
     </div>
