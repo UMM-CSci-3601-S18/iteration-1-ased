@@ -8,9 +8,9 @@ import {Goal} from './goal';
     selector: 'app-add-goal.component',
     templateUrl: 'add-goal.component.html',
 })
-export class AddUserComponent {
+export class AddGoalComponent {
     constructor(
-        public dialogRef: MatDialogRef<AddUserComponent>,
+        public dialogRef: MatDialogRef<AddGoalComponent>,
         @Inject(MAT_DIALOG_DATA) public data: {goal: Goal}) {
     }
 

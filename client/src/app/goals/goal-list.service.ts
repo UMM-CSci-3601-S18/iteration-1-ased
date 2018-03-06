@@ -1,4 +1,4 @@
-/*
+
 
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -17,8 +17,8 @@ export class GoalListService {
     constructor(private http: HttpClient) {
     }
 
-    getGoals(goalCompany?: string): Observable<Goal[]> {
-        this.filterByCompany(goalCompany);
+    getGoals(goaltitle?: string): Observable<Goal[]> {
+        this.filterByDescription(goaltitle);
         return this.http.get<Goal[]>(this.goalUrl);
     }
 
@@ -32,8 +32,8 @@ export class GoalListService {
 
     //This method looks lovely and is more compact, but it does not clear previous searches appropriately.
     //It might be worth updating it, but it is currently commented out since it is not used (to make that clear)
-    getGoalsByCompany(goalCompany?: string): Observable<Goal> {
-        this.goalUrl = this.goalUrl + (!(goalCompany == null || goalCompany == "") ? "?company=" + goalCompany : "");
+    getGoalsByDescription(goalDescription?: string): Observable<Goal> {
+        this.goalUrl = this.goalUrl + (!(goalDescription == null || goalDescription == "") ? "?title=" + goalDescription : "");
         console.log("The url is: " + this.goalUrl);
         return this.http.request(this.goalUrl).map(res => res.json());
     }
@@ -44,23 +44,23 @@ export class GoalListService {
 
 
 
-    filterByCompany(goalCompany?: string): void {
-        if (!(goalCompany == null || goalCompany === '')) {
-            if (this.parameterPresent('company=') ) {
-                // there was a previous search by company that we need to clear
-                this.removeParameter('company=');
+    filterByDescription(goalDescription?: string): void {
+        if (!(goalDescription == null || goalDescription === '')) {
+            if (this.parameterPresent('title=') ) {
+                // there was a previous search by title that we need to clear
+                this.removeParameter('title=');
             }
             if (this.goalUrl.indexOf('?') !== -1) {
                 // there was already some information passed in this url
-                this.goalUrl += 'company=' + goalCompany + '&';
+                this.goalUrl += 'title=' + goalDescription + '&';
             } else {
                 // this was the first bit of information to pass in the url
-                this.goalUrl += '?company=' + goalCompany + '&';
+                this.goalUrl += '?title=' + goalDescription + '&';
             }
         } else {
             // there was nothing in the box to put onto the URL... reset
-            if (this.parameterPresent('company=')) {
-                let start = this.goalUrl.indexOf('company=');
+            if (this.parameterPresent('title=')) {
+                let start = this.goalUrl.indexOf('title=');
                 const end = this.goalUrl.indexOf('&', start);
                 if (this.goalUrl.substring(start - 1, start) === '?') {
                     start = start - 1;
@@ -99,4 +99,4 @@ export class GoalListService {
 }
 
 
-*/
+

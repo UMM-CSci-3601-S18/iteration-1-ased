@@ -1,12 +1,12 @@
 
-/*
 
 import {Component, OnInit} from '@angular/core';
 import {GoalListService} from './goal-list.service';
 import {Goal} from './goal';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
-import {AddGoalComponent} from './add-goal.component';
+import {AddGoalComponent} from "./add-goal.component";
+//import {AddGoalComponent} from './add-goal.component';
 
 @Component({
     selector: 'app-goal-list-component',
@@ -21,9 +21,9 @@ export class GoalListComponent implements OnInit {
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
-    public goalName: string;
-    public goalAge: number;
-    public goalCompany: string;
+    public goalTitle: string;
+    public goalTime: number;
+    public goalDescription: string;
 
     // The ID of the
     private highlightedID: {'$oid': string} = { '$oid': '' };
@@ -37,8 +37,8 @@ export class GoalListComponent implements OnInit {
         return goal._id['$oid'] === this.highlightedID['$oid'];
     }
 
-    openDialog(): void {
-        const newGoal: Goal = {_id: '', name: '', age: -1, company: '', email: ''};
+   openDialog(): void {
+        const newGoal: Goal = {_id: '', title: '', time: '', description: ''};
         const dialogRef = this.dialog.open(AddGoalComponent, {
             width: '500px',
             data: { goal: newGoal }
@@ -58,23 +58,23 @@ export class GoalListComponent implements OnInit {
         });
     }
 
-    public filterGoals(searchName: string, searchAge: number): Goal[] {
+    public filterGoals(searchTitle: string, searchTime: number): Goal[] {
 
         this.filteredGoals = this.goals;
 
-        // Filter by name
-        if (searchName != null) {
-            searchName = searchName.toLocaleLowerCase();
+        // Filter by Title
+        if (searchTitle != null) {
+            searchTitle = searchTitle.toLocaleLowerCase();
 
             this.filteredGoals = this.filteredGoals.filter(goal => {
-                return !searchName || goal.name.toLowerCase().indexOf(searchName) !== -1;
+                return !searchTitle || goal.title.toLowerCase().indexOf(searchTitle) !== -1;
             });
         }
 
-        // Filter by age
-        if (searchAge != null) {
+        // Filter by Time
+        if (searchTime != null) {
             this.filteredGoals = this.filteredGoals.filter(goal => {
-                return !searchAge || goal.age == searchAge;
+                return !searchTime || goal.time == searchTime;
             });
         }
 
@@ -82,7 +82,7 @@ export class GoalListComponent implements OnInit {
     }
 
 
-*/
+
 
 
     /**
@@ -90,7 +90,6 @@ export class GoalListComponent implements OnInit {
      *
      */
 
-/*
 
 
     refreshGoals(): Observable<Goal[]> {
@@ -104,7 +103,7 @@ export class GoalListComponent implements OnInit {
         goalListObservable.subscribe(
             goals => {
                 this.goals = goals;
-                this.filterGoals(this.goalName, this.goalAge);
+                this.filterGoals(this.goalTitle, this.goalTime);
             },
             err => {
                 console.log(err);
@@ -114,7 +113,7 @@ export class GoalListComponent implements OnInit {
 
 
     loadService(): void {
-        this.goalListService.getGoals(this.goalCompany).subscribe(
+        this.goalListService.getGoals(this.goalDescription).subscribe(
             goals => {
                 this.goals = goals;
                 this.filteredGoals = this.goals;
@@ -133,4 +132,4 @@ export class GoalListComponent implements OnInit {
 }
 
 
-*/
+

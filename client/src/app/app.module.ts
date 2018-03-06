@@ -11,8 +11,8 @@ import {HomeComponent} from './home/home.component';
 
 import {UserListComponent} from './users/user-list.component';
 import {UserListService} from './users/user-list.service';
-//import {GoalListComponent} from'./goals/goal-list.component';
-//import {GoalListService} from'./goals/goal-list.service'
+import {GoalListComponent} from'./goals/goal-list.component';
+import {GoalListService} from'./goals/goal-list.service';
 
 
 import {Routing} from './app.routes';
@@ -21,7 +21,7 @@ import {APP_BASE_HREF} from '@angular/common';
 import {CustomModule} from './custom.module';
 import {AddUserComponent} from './users/add-user.component';
 
-//import{AddGoalComponents} from'./goals/add-goal.component';
+import {AddGoalComponent} from'./goals/add-goal.component';
 
 
 @NgModule({
@@ -34,8 +34,13 @@ import {AddUserComponent} from './users/add-user.component';
     declarations: [
         AppComponent,
         HomeComponent,
+
         UserListComponent,
-        AddUserComponent
+        AddUserComponent,
+
+        GoalListComponent,
+        AddGoalComponent
+
     ],
     providers: [
         UserListService,
@@ -44,6 +49,8 @@ import {AddUserComponent} from './users/add-user.component';
     ],
     entryComponents: [
       AddUserComponent,
+      AddGoalComponent
+
     ],
     bootstrap: [AppComponent]
 })

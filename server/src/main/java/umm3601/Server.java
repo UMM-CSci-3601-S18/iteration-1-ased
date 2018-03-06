@@ -6,6 +6,8 @@ import spark.Request;
 import spark.Response;
 import umm3601.user.UserController;
 import umm3601.user.UserRequestHandler;
+import umm3601.goal.GoalController;
+import umm3601.goal.GoalRequestHandler;
 
 import java.io.IOException;
 
@@ -30,8 +32,8 @@ public class Server {
         UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
 
 
-   //     GoalController goalController = new GoalController(goalDatabase);
-   //     GoalRequestHandler goalRequestHandler = new GoalRequestHandler(goalController);
+        GoalController goalController = new GoalController(goalDatabase);
+        GoalRequestHandler goalRequestHandler = new GoalRequestHandler(goalController);
 
 
 
@@ -82,9 +84,9 @@ public class Server {
         // List goals, filtered using query parameters
 
 
-      //   get("api/goals", goalRequestHandler::getGoal);
-      //  get("api/goals/:id", goalRequestHandler::getGoalJSON);
-      //  post("api/goals/new", goalRequestHandler::addNewGoal);
+        // get("api/goals", goalRequestHandler::getGoal);
+        get("api/goals/:id", goalRequestHandler::getGoalJSON);
+        post("api/goals/new", goalRequestHandler::addNewGoal);
 
 
 
