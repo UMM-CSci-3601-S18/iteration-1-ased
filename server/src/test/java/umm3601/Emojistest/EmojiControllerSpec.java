@@ -1,4 +1,4 @@
-package umm3601.Emojis;
+package umm3601.Emojistest;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
 
 /**
  * JUnit tests for the UserController.
- *
+ *Assert.*;
  * Created by mcphee on 22/2/17.
  */
 public class EmojiControllerSpec
@@ -32,7 +32,7 @@ public class EmojiControllerSpec
     @Before
     public void clearAndPopulateDB() throws IOException {
         MongoClient mongoClient = new MongoClient();
-        MongoDatabase db = mongoClient.getDatabase("test");
+        MongoDatabase db = mongoClient.getDatabase("");
         MongoCollection<Document> userDocuments = db.getCollection("users");
         userDocuments.drop();
         List<Document> testUsers = new ArrayList<>();
