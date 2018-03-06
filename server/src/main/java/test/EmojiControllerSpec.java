@@ -1,24 +1,23 @@
 package umm3601.Emojis;
-import umm3601.Emojis.EmojiController;
 
-    import com.mongodb.BasicDBObject;
-    import com.mongodb.MongoClient;
-    import com.mongodb.client.MongoCollection;
-    import com.mongodb.client.MongoDatabase;
-    import org.bson.*;
-    import org.bson.codecs.*;
-    import org.bson.codecs.configuration.CodecRegistries;
-    import org.bson.codecs.configuration.CodecRegistry;
-    import org.bson.json.JsonReader;
-    import org.bson.types.ObjectId;
-    import org.junit.Before;
-    import org.junit.Test;
+import com.mongodb.BasicDBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.*;
+import org.bson.codecs.*;
+import org.bson.codecs.configuration.CodecRegistries;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.json.JsonReader;
+import org.bson.types.ObjectId;
+import org.junit.Before;
+import org.junit.Test;
 
-    import java.io.IOException;
-    import java.util.*;
-    import java.util.stream.Collectors;
+import java.io.IOException;
+import java.util.*;
+import java.util.stream.Collectors;
 
-    import static org.junit.Assert.*;
+import static org.junit.Assert.*;
 
 /**
  * JUnit tests for the UserController.
@@ -28,7 +27,8 @@ import umm3601.Emojis.EmojiController;
 public class EmojiControllerSpec
 {
     private EmojiController emojiController;
-    private ObjectId samsId;
+    private ObjectId sungjaesId;
+
     @Before
     public void clearAndPopulateDB() throws IOException {
         MongoClient mongoClient = new MongoClient();
@@ -37,40 +37,39 @@ public class EmojiControllerSpec
         userDocuments.drop();
         List<Document> testUsers = new ArrayList<>();
         testUsers.add(Document.parse("{\n" +
-            "                    name: \"Chris\",\n" +
-            "                    age: 25,\n" +
-            "                    company: \"UMM\",\n" +
-            "                    email: \"chris@this.that\"\n" +
+            "                    _id: \"Chris\",\n" +
+            "                    user: \"Chris\",\n" +
+            "                    value: \"Happy\",\n" +
+            "                    time_stamp: \"9/10/2017 13:00\"\n" +
             "                }"));
         testUsers.add(Document.parse("{\n" +
-            "                    name: \"Pat\",\n" +
-            "                    age: 37,\n" +
-            "                    company: \"IBM\",\n" +
-            "                    email: \"pat@something.com\"\n" +
+            "                    _id: \"Pat\",\n" +
+            "                    user: \"Pat\",\n" +
+            "                    value: \"Sad\",\n" +
+            "                    time_stamp: \"6/20/2014 16:00\"\n" +
             "                }"));
         testUsers.add(Document.parse("{\n" +
-            "                    name: \"Jamie\",\n" +
-            "                    age: 37,\n" +
-            "                    company: \"Frogs, Inc.\",\n" +
-            "                    email: \"jamie@frogs.com\"\n" +
+            "                    _id: \"Jamie\",\n" +
+            "                    user: \"Jamie\",\n" +
+            "                    value: \"Angry\",\n" +
+            "                    time_stamp: \"1/20/2018 20:00\"\n" +
             "                }"));
 
-        samsId = new ObjectId();
-        BasicDBObject sam = new BasicDBObject("_id", samsId);
-        sam = sam.append("name", "Sam")
-            .append("age", 45)
-            .append("company", "Frogs, Inc.")
-            .append("email", "sam@frogs.com");
+        sungjaesId = new ObjectId();
+        BasicDBObject sungjae = new BasicDBObject("_id", sungjaesId);
+        sungjae = sungjae.append("user", "Sungjae")
+            .append("value", "Sad")
+            .append("time_stamp", "3/05/2018 22:16");
 
 
 
-        userDocuments.insertMany(testUsers);
-        userDocuments.insertOne(Document.parse(sam.toJson()));
+        emojiDocuments.insertMany(testEmojis);
+        emojiDocuments.insertOne(Document.parse(sungjae.toJson()));
 
         // It might be important to construct this _after_ the DB is set up
         // in case there are bits in the constructor that care about the state
         // of the database.
-        userController = new UserController(db);
+        emojiController = new EmojiController(db);
     }
 
     // http://stackoverflow.com/questions/34436952/json-parse-equivalent-in-mongo-driver-3-x-for-java
@@ -87,91 +86,71 @@ public class EmojiControllerSpec
         return arrayReader.decode(reader, DecoderContext.builder().build());
     }
 
-    private static String getName(BsonValue val) {
+    private static String getUsers(BsonValue val) {
         BsonDocument doc = val.asDocument();
-        return ((BsonString) doc.get("name")).getValue();
+        return ((BsonString) doc.get("user")).getValue();
     }
 
     @Test
-    public void getAllUsers() {
+    public void getAllEmojis() {
         Map<String, String[]> emptyMap = new HashMap<>();
-        String jsonResult = userController.getUsers(emptyMap);
+        String jsonResult = emojiController.getEmojis(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
         assertEquals("Should be 4 users", 4, docs.size());
         List<String> names = docs
             .stream()
-            .map(UserControllerSpec::getName)
+            .map(EmojiControllerSpec::getUsers)
             .sorted()
             .collect(Collectors.toList());
-        List<String> expectedNames = Arrays.asList("Chris", "Jamie", "Pat", "Sam");
+        List<String> expectedNames = Arrays.asList("Chris", "Jamie", "Pat", "Sungjae");
         assertEquals("Names should match", expectedNames, names);
     }
 
     @Test
-    public void getUsersWhoAre37() {
+    public void getEmojisByUser() {
         Map<String, String[]> argMap = new HashMap<>();
-        argMap.put("age", new String[] { "37" });
-        String jsonResult = userController.getUsers(argMap);
+        argMap.put("user", new String[] { "Chris" });
+        String jsonResult = emojiController.getEmojis(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        assertEquals("Should be 2 users", 2, docs.size());
+        assertEquals("Should be shows Happy Emojis", 1, docs.size());
         List<String> names = docs
             .stream()
-            .map(UserControllerSpec::getName)
+            .map(EmojiControllerSpec::getUsers)
             .sorted()
             .collect(Collectors.toList());
-        List<String> expectedNames = Arrays.asList("Jamie", "Pat");
+        List<String> expectedNames = Arrays.asList("Chris");
         assertEquals("Names should match", expectedNames, names);
     }
 
     @Test
     public void getSamById() {
-        String jsonResult = userController.getUser(samsId.toHexString());
-        Document sam = Document.parse(jsonResult);
-        assertEquals("Name should match", "Sam", sam.get("name"));
-        String noJsonResult = userController.getUser(new ObjectId().toString());
+        String jsonResult = emojiController.getUser(sungjaesId.toHexString());
+        Document sungjae = Document.parse(jsonResult);
+        assertEquals("Name should match", "Sungjae", sungjae.get("user"));
+        String noJsonResult = emojiController.getEmoji(new ObjectId().toString());
         assertNull("No name should match",noJsonResult);
 
     }
 
     @Test
-    public void addUserTest(){
-        String newId = userController.addNewUser("Brian",22,"umm", "brian@yahoo.com");
+    public void addEmojiTest(){
+        String newId = emojiController.addNewEmoji("ethan","Ethan","Sad","3/03/2018 22:30");
 
         assertNotNull("Add new user should return true when user is added,", newId);
         Map<String, String[]> argMap = new HashMap<>();
-        argMap.put("age", new String[] { "22" });
-        String jsonResult = userController.getUsers(argMap);
+        argMap.put("Ethan", new String[] { "Ethan" });
+        String jsonResult = emojiController.getEmojis(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
         List<String> name = docs
             .stream()
-            .map(UserControllerSpec::getName)
+            .map(EmojiControllerSpec::getUsers)
             .sorted()
             .collect(Collectors.toList());
-        assertEquals("Should return name of new user", "Brian", name.get(0));
+        assertEquals("Should return name of new user", "Ethan", name.get(4));
     }
-
-    @Test
-    public void getUserByCompany(){
-        Map<String, String[]> argMap = new HashMap<>();
-        //Mongo in UserController is doing a regex search so can just take a Java Reg. Expression
-        //This will search the company starting with an I or an F
-        argMap.put("company", new String[] { "[I,F]" });
-        String jsonResult = userController.getUsers(argMap);
-        BsonArray docs = parseJsonArray(jsonResult);
-        assertEquals("Should be 3 users", 3, docs.size());
-        List<String> name = docs
-            .stream()
-            .map(UserControllerSpec::getName)
-            .sorted()
-            .collect(Collectors.toList());
-        List<String> expectedName = Arrays.asList("Jamie","Pat","Sam");
-        assertEquals("Names should match", expectedName, name);
-
-    }
-
 
 
 }
