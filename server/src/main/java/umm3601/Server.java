@@ -15,6 +15,7 @@ import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class Server {
     private static final String userDatabaseName = "dev";
+    private static final String goalDatabaseName = "dev";
     private static final int serverPort = 4567;
 
     public static void main(String[] args) throws IOException {
@@ -22,8 +23,18 @@ public class Server {
         MongoClient mongoClient = new MongoClient();
         MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
 
+        MongoDatabase goalDatabase = mongoClient.getDatabase(goalDatabaseName);
+
+
         UserController userController = new UserController(userDatabase);
         UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
+
+
+   //     GoalController goalController = new GoalController(goalDatabase);
+   //     GoalRequestHandler goalRequestHandler = new GoalRequestHandler(goalController);
+
+
+
 
         //Configure Spark
         port(serverPort);
@@ -66,6 +77,19 @@ public class Server {
         get("api/users", userRequestHandler::getUsers);
         get("api/users/:id", userRequestHandler::getUserJSON);
         post("api/users/new", userRequestHandler::addNewUser);
+
+
+        // List goals, filtered using query parameters
+
+
+      //   get("api/goals", goalRequestHandler::getGoal);
+      //  get("api/goals/:id", goalRequestHandler::getGoalJSON);
+      //  post("api/goals/new", goalRequestHandler::addNewGoal);
+
+
+
+
+
 
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.
