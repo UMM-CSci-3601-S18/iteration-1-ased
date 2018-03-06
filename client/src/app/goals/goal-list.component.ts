@@ -72,12 +72,12 @@ export class GoalListComponent implements OnInit {
         }
 
         // Filter by Time
-        if (searchTime != null) {
+     /*    if (searchTime != null) {
             this.filteredGoals = this.filteredGoals.filter(goal => {
                 return !searchTime || goal.time == searchTime;
             });
         }
-
+*/
         return this.filteredGoals;
     }
 

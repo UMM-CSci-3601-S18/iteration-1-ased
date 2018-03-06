@@ -1,7 +1,7 @@
-export interface User {
+export interface Goal {
     _id: string;
     title: string;
-    time: number;    // age
-    discretion: string;  // company
+    time: string;    // age
+    description: string;  // company
   //  email: string;
 }

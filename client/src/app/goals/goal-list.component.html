@@ -8,11 +8,11 @@
 <div layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <mat-card>
-            <mat-card-title id="user-list-title">Users</mat-card-title>
+            <mat-card-title id="goal-list-title">Goals</mat-card-title>
             <mat-divider></mat-divider>
             <mat-card-content>
                 <mat-form-field>
-                    <input matInput id="userTitle" #input type="text" placeholder="Filter by title" (input)="goalTitle = $event.target.value">
+                    <input matInput id="goalTitle" #input type="text" placeholder="Filter by title" (input)="goalTitle = $event.target.value">
                 </mat-form-field>
                 <mat-form-field>
                     <input matInput id="goalTime" #input type="number" placeholder="Filter by time" (input)="goalTime = $event.target.value">
@@ -25,10 +25,10 @@
                 </mat-form-field>
                 <button mat-raised-button id="submit" color="primary" #input type="button" (click)="loadService()">Submit</button>
 
-                <mat-accordion *ngIf="users; else usersError" >
-                <mat-expansion-panel #elem class="goals" [id]="" [expanded]="this.isHighlighted(goal)" *ngFor="let goal of this.filterUsers(userName, userAge)">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title matTooltip=": {{}}" >{{goal.title}}</mat-panel-title>
+                <mat-accordion *ngIf="goals; else goalsError" >
+                <mat-expansion-panel #elem class="goals" [id]="" [expanded]="this.isHighlighted(goal)" *ngFor="let goal of this.filterGoals(goalTitle, goalTime)">
+                 <mat-expansion-panel-header>
+                        <mat-panel-title matTooltip="time: {{goal.time}}" >{{goal.title}}</mat-panel-title>
 
                     </mat-expansion-panel-header>
                     <mat-panel-description >description {{goal.description}}</mat-panel-description>
@@ -36,15 +36,15 @@
                 </mat-expansion-panel>
                 </mat-accordion>
                 <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
-                <ng-template #usersError>
+                <ng-template #goalsError>
                     <mat-error>
-                        There was a problem loading the users. Possibly the server is down or perhaps there are network
+                        There was a problem loading the Goals. Possibly the server is down or perhaps there are network
                         issues.
                     </mat-error>
                     <mat-error>
                         Please wait a bit and try again or start the server.
                     </mat-error>
-                </ng-template>
+                    </ng-template>
             </mat-card-content>
         </mat-card>
     </div>
