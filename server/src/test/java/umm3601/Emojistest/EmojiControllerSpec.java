@@ -64,8 +64,8 @@ public class EmojiControllerSpec
 
 
 
-        emojiDocuments.insertMany(testEmojis);
-        emojiDocuments.insertOne(Document.parse(sungjae.toJson()));
+        userDocuments.insertMany(testUsers);
+        userDocuments.insertOne(Document.parse(sungjae.toJson()));
 
         // It might be important to construct this _after_ the DB is set up
         // in case there are bits in the constructor that care about the state
