@@ -84,7 +84,7 @@ public class GoalRequestHandler {
                     String title = dbO.getString("title");
                     //For some reason age is a string right now, caused by angular.
                     //This is a problem and should not be this way but here ya go
-                    int time = dbO.getInt("time");
+                    String time = dbO.getString("time");
                     String description = dbO.getString("description");
 
 
