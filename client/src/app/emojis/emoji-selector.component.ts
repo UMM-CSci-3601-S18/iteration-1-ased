@@ -40,7 +40,7 @@ export class EmojiSelectorComponent implements OnInit {
         this.emojidoc.time_stamp = Date();
 
 
-      //  this.emojiSelectorService.addNewEmoji(this.emojidoc);
+        this.emojiSelectorService.addNewEmoji(this.emojidoc);
 
         //use mat-dialog
 
