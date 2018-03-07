@@ -1,0 +1,26 @@
+<div layout-gt-sm="row">
+    <div flex-gt-sm="80" flex-offset-gt-sm="10">
+        <mat-card>
+            <mat-card-title id="emoji-display-title">Emoji History</mat-card-title>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+                <mat-accordion *ngIf="emojis; else emojisError">
+                    <mat-expansion-panel #elem class="emojis"  [id]="emoji.user" [expanded]="this.isHighlighted(emoji)" *ngFor="let emoji of this.filterEmojis()">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>{{emoji.user}}</mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-panel-description> {{emoji.user}} selected {{emoji.value}} on {{emoji.time_stamp}}</mat-panel-description>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <ng-template #emojisError>
+                    <mat-error>
+                        There was a problem loading the emojis. Possibly the server is down or perhaps there are network issues
+                    </mat-error>
+                    <mat-error>
+                        Please wait a bit and try again or start the server.
+                    </mat-error>
+                </ng-template>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
