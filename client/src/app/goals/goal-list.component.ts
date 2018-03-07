@@ -6,7 +6,7 @@ import {Goal} from './goal';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
 import {AddGoalComponent} from "./add-goal.component";
-//import {AddGoalComponent} from './add-goal.component';
+
 
 @Component({
     selector: 'app-goal-list-component',
@@ -22,7 +22,7 @@ export class GoalListComponent implements OnInit {
     // These are the target values used in searching.
     // We should rename them to make that clearer.
     public goalTitle: string;
-    public goalTime: number;
+    public goalTime: string;
     public goalDescription: string;
 
     // The ID of the
@@ -58,7 +58,7 @@ export class GoalListComponent implements OnInit {
         });
     }
 
-    public filterGoals(searchTitle: string, searchTime: number): Goal[] {
+    public filterGoals(searchTitle: string, searchTime: string): Goal[] {
 
         this.filteredGoals = this.goals;
 
@@ -72,12 +72,12 @@ export class GoalListComponent implements OnInit {
         }
 
         // Filter by Time
-     /*    if (searchTime != null) {
+         if (searchTime != null) {
             this.filteredGoals = this.filteredGoals.filter(goal => {
                 return !searchTime || goal.time == searchTime;
             });
         }
-*/
+
         return this.filteredGoals;
     }
 

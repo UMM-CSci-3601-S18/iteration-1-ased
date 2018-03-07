@@ -43,13 +43,13 @@ export class GoalListService {
                 // there was a previous search by title that we need to clear
                 this.removeParameter('title=');
             }
-         /*   if (this.titleUrl.indexOf('?') !== -1) {
+            if (this.goalUrl.indexOf('?') !== -1) {
                 // there was already some information passed in this url
-                this.titleUrl += 'title=' + goalTitle + '&';
+                this.goalUrl += 'title=' + goalTitle + '&';
             } else {
                 // this was the first bit of information to pass in the url
-                this.titleUrl += '?title=' + goalTitle + '&';
-            }  */
+                this.goalUrl += '?title=' + goalTitle + '&';
+            }
         } else {
             // there was nothing in the box to put onto the URL... reset
             if (this.parameterPresent('title=')) {
