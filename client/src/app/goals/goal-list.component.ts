@@ -24,7 +24,7 @@ export class GoalListComponent implements OnInit {
     public goalTitle: string;
     public goalTime: string;
     public goalDescription: string;
-
+    // description
     // The ID of the
     private highlightedID: {'$oid': string} = { '$oid': '' };
 

@@ -19,7 +19,7 @@
                 </mat-form-field>
                 <mat-form-field>
                     <input matInput id="goalDescription" #input type="search" placeholder="Search for description" [(ngModel)]="goalDescription" />
-                    <button mat-button id="companyClearSearch" type="button" *ngIf="goalDescription" matSuffix mat-icon-button aria-label="clear" (click)="goalDescription='';loadService()">
+                    <button mat-button id="descriptionClearSearch" type="button" *ngIf="goalDescription" matSuffix mat-icon-button aria-label="clear" (click)="goalDescription='';loadService()">
                         <mat-icon>close</mat-icon>
                     </button>
                 </mat-form-field>

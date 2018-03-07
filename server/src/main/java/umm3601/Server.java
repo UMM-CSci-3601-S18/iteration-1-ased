@@ -84,7 +84,7 @@ public class Server {
         // List goals, filtered using query parameters
 
 
-        // get("api/goals", goalRequestHandler::getGoal);
+        get("api/goals", goalRequestHandler::getGoals);
         get("api/goals/:id", goalRequestHandler::getGoalJSON);
         post("api/goals/new", goalRequestHandler::addNewGoal);
 

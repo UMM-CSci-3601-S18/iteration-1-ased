@@ -45,7 +45,13 @@ import {AddGoalComponent} from'./goals/add-goal.component';
     providers: [
         UserListService,
         {provide: APP_BASE_HREF, useValue: '/'},
+        {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
+
+        GoalListService,
+        {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
+
+
     ],
     entryComponents: [
       AddUserComponent,
