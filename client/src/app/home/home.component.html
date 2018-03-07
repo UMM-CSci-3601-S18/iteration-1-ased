@@ -6,9 +6,9 @@
             <mat-divider></mat-divider>
             <mat-card-content>
                 What would you like to do?
-                <mat-list>
-                    <a mat-list-item [routerLink]="['/emoji-selector']" (click)="layout.close()" routerLinkActive="nav-active"><mat-icon>touch_app</mat-icon>Emoji Selector</a>
-                </mat-list>
+                <mat-nav-list>
+                    <a href="/emoji-selector"><mat-icon>touch_app</mat-icon>Emoji Selector</a>
+                </mat-nav-list>
             </mat-card-content>
         </mat-card>
     </div>
