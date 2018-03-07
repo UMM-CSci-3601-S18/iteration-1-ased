@@ -15,15 +15,18 @@ import {AddGoalComponent} from "./add-goal.component";
 })
 
 export class GoalListComponent implements OnInit {
+
     // These are public so that tests can reference them (.spec.ts)
     public goals: Goal[];
     public filteredGoals: Goal[];
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
+
     public goalTitle: string;
     public goalTime: string;
     public goalDescription: string;
+
     // description
     // The ID of the
     private highlightedID: {'$oid': string} = { '$oid': '' };
@@ -72,11 +75,11 @@ export class GoalListComponent implements OnInit {
         }
 
         // Filter by Time
-         if (searchTime != null) {
+       /*  if (searchTime != null) {
             this.filteredGoals = this.filteredGoals.filter(goal => {
                 return !searchTime || goal.time == searchTime;
             });
-        }
+        }  */
 
         return this.filteredGoals;
     }

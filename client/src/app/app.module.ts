@@ -18,8 +18,8 @@ import {Routing} from './app.routes';
 import {APP_BASE_HREF} from '@angular/common';
 
 import {CustomModule} from './custom.module';
-import {AddUserComponent} from './users/add-user.component';
 
+import {AddUserComponent} from './users/add-user.component';
 import {AddGoalComponent} from'./goals/add-goal.component';
 
 

@@ -1,6 +1,6 @@
 <div>
     <ol>
-    <button id = "addNewGoal" mat-raised-button (click)="openDialog()">Add A New Todo  list</button>
+    <button id = "addNewGoal" mat-raised-button (click)="openDialog()">Add a new goal</button>
     </ol>
 </div>
 
@@ -8,31 +8,35 @@
 <div layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <mat-card>
-            <mat-card-title id="goal-list-title">Goals</mat-card-title>
+            <mat-card-title id="goal-list-title">Set Your Goals</mat-card-title>
             <mat-divider></mat-divider>
             <mat-card-content>
                 <mat-form-field>
                     <input matInput id="goalTitle" #input type="text" placeholder="Filter by title" (input)="goalTitle = $event.target.value">
                 </mat-form-field>
-                <mat-form-field>
-                    <input matInput id="goalTime" #input type="number" placeholder="Filter by time" (input)="goalTime = $event.target.value">
-                </mat-form-field>
+<!--
                 <mat-form-field>
                     <input matInput id="goalDescription" #input type="search" placeholder="Search for description" [(ngModel)]="goalDescription" />
                     <button mat-button id="descriptionClearSearch" type="button" *ngIf="goalDescription" matSuffix mat-icon-button aria-label="clear" (click)="goalDescription='';loadService()">
                         <mat-icon>close</mat-icon>
                     </button>
                 </mat-form-field>
+    -->
                 <button mat-raised-button id="submit" color="primary" #input type="button" (click)="loadService()">Submit</button>
 
                 <mat-accordion *ngIf="goals; else goalsError" >
                 <mat-expansion-panel #elem class="goals" [id]="" [expanded]="this.isHighlighted(goal)" *ngFor="let goal of this.filterGoals(goalTitle, goalTime)">
-                 <mat-expansion-panel-header>
+
+
+                   <mat-expansion-panel-header>
                         <mat-panel-title matTooltip="time: {{goal.time}}" >{{goal.title}}</mat-panel-title>
 
                     </mat-expansion-panel-header>
-                    <mat-panel-description >description {{goal.description}}</mat-panel-description>
-                    <mat-panel-description>due by: {{goal.time}}</mat-panel-description>
+
+
+                    <mat-panel-title>due by: {{goal.time}}</mat-panel-title>
+                    <mat-panel-title >description {{goal.description}}</mat-panel-title>
+
                 </mat-expansion-panel>
                 </mat-accordion>
                 <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->

@@ -23,8 +23,8 @@ public class Server {
     public static void main(String[] args) throws IOException {
 
         MongoClient mongoClient = new MongoClient();
-        MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
 
+        MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
         MongoDatabase goalDatabase = mongoClient.getDatabase(goalDatabaseName);
 
 
