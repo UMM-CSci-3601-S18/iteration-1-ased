@@ -55,7 +55,8 @@ export class EmojiSelectorComponent implements OnInit {
             width: '75vw',
             data: { name: this.emojiUser,
                 writtenResponse: this.emojiSelectorService.writtenResponse(value),
-                mediaResponse: this.emojiSelectorService.emojiResponder(value)}
+                mediaLinkResponse: this.emojiSelectorService.emojiResponder(value),
+                mediaNameResponse: this.emojiSelectorService.emojiResponder2(value)}
         });
 
     }
