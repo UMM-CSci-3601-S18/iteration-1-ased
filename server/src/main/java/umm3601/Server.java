@@ -55,6 +55,8 @@ public class Server {
 
         redirect.get("/", "http://localhost:9000");
 
+        get("api/emojis", emojiRequestHandler::getEmojis);
+
         // Add an emoji to the database
         get("api/emojis/new", emojiRequestHandler::submitEmoji);
 

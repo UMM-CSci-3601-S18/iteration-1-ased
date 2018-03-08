@@ -1,29 +1,22 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-
-import {Observable} from 'rxjs/Observable';
-
-import {Emoji} from './emoji';
 import {environment} from '../../environments/environment';
-
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {Emoji} from './emoji';
 
 @Injectable()
 export class EmojiDisplayService {
-    readonly baseUrl: string = environment.API_URL + 'emoji-display';
+    readonly baseUrl: string = environment.API_URL + 'emojis';
     private emojiUrl: string = this.baseUrl;
-
+    filtered = false;
 
     constructor(private http: HttpClient) {
     }
 
-    getEmojis(): Observable<{'$oid': string}> {
-        const httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json'
-            }),
-        };
+    getEmojis(): Observable<Emoji[]> {
+        this.emojiUrl = this.baseUrl + 'api/emojis';
 
-        return this.http.get<{'$oid': string}>(this.emojiUrl + '/display', httpOptions);
+        this.filtered = false;
+        return this.http.get<Emoji[]>(this.emojiUrl);
     }
-
 }
