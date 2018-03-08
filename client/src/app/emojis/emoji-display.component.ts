@@ -18,6 +18,9 @@ export class EmojiDisplayComponent implements OnInit {
     public emojiTime: string;
     public _id: string;
 
+    public emojis: Emoji[];
+    public filteredEmojis: Emoji[];
+
     public loadReady: boolean = false;
 
     private highlightedID: {'$oid': string} = { '$oid': ''};

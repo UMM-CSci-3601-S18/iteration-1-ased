@@ -14,9 +14,6 @@ export class EmojiDisplayService {
     }
 
     getEmojis(): Observable<Emoji[]> {
-        this.emojiUrl = this.baseUrl + 'api/emojis';
-
-        this.filtered = false;
         return this.http.get<Emoji[]>(this.emojiUrl);
     }
 }
