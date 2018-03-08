@@ -1,9 +1,12 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {EmojiSelectorComponent} from './emoji-selector.component';
+import {EmojiSelectorService} from "./emoji-selector.service";
 import {DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {CustomModule} from '../custom.module';
 import {MATERIAL_COMPATIBILITY_MODE} from '@angular/material';
+import {Observable} from "rxjs/Observable";
+import {Emoji} from "./emoji";
 
 describe('Emoji Selection', () => {
 
@@ -12,11 +15,16 @@ describe('Emoji Selection', () => {
     let de: DebugElement;
     let el: HTMLElement;
 
+    let emojiSelectorServiceStub: {
+        getEmojis: () => Observable<Emoji[]>
+    };
+
     beforeEach( () => {
         TestBed.configureTestingModule({
             imports: [CustomModule],
             declarations: [EmojiSelectorComponent],
-            providers: [{provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}],
+            providers: [{provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
+                {provide: EmojiSelectorService, useValue: emojiSelectorServiceStub}],
         });
 
         fixture = TestBed.createComponent(EmojiSelectorComponent);
@@ -27,7 +35,9 @@ describe('Emoji Selection', () => {
         el = de.nativeElement;
     });
 
+
     it('Should display the title', () => {
+        fixture.detectChanges();
         expect(el.textContent).toContain('Emoji Selector');
     });
 
@@ -37,4 +47,6 @@ describe('Emoji Selection', () => {
         expect(fixture.debugElement.query((By.css('#angry')))).toBeDefined();
         expect(fixture.debugElement.query((By.css('#neutral')))).toBeDefined();
     });
+
+
 });
