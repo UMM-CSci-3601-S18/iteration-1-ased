@@ -8,6 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 
+import {ResourcesComponent} from './resources/resources.component';
 
 import {EmojiSelectorService} from './emojis/emoji-selector.service';
 import {EmojiSelectorComponent} from './emojis/emoji-selector.component';
@@ -40,16 +41,16 @@ import {AddGoalComponent} from'./goals/add-goal.component';
         AppComponent,
         HomeComponent,
 
+        ResourcesComponent,
+
         EmojiSelectorComponent,
         EmojiSelectorResponseDialog,
-
-
 
         GoalListComponent,
         AddGoalComponent,
 
         EmojiSelectorResponseDialog,
-        EmojiDisplayComponent
+        EmojiDisplayComponent,
     ],
     providers: [
 
