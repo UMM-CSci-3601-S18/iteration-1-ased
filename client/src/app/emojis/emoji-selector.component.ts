@@ -14,7 +14,7 @@ import {Observable} from 'rxjs/Observable';
 export class EmojiSelectorComponent implements OnInit {
     // These are public so that tests can reference them (.spec.ts)
     public emojis: Emoji[];
-    public emojidoc: Emoji;
+
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
@@ -33,25 +33,23 @@ export class EmojiSelectorComponent implements OnInit {
         return Date();
     }
 
-    submitEmoji(user: string, value: string): void {
-        console.log('The client went through submitEmoji in emoji-selector.component');
 
-        this.emojidoc._id = '';
-        this.emojidoc.value = value;
-        this.emojidoc.user = user;
-        this.emojidoc.time_stamp = Date();
-
-
-
-        this.emojiSelectorService.addNewEmoji(this.emojidoc);
-
-        //use mat-dialog
-
-        //mat-dialog will make popup
-    }
 
     openDialog(): void {
         let value = this.emojiVal;
+        var emojidoc: Emoji = {
+            _id: '',
+            user: '',
+            value: '',
+            time_stamp: '',
+        };
+
+        emojidoc._id = '';
+        emojidoc.value = value;
+        emojidoc.user = this.emojiUser;
+        emojidoc.time_stamp = Date();
+
+        this.emojiSelectorService.addNewEmoji(emojidoc);
 
         let dialogRef = this.dialog.open(EmojiSelectorResponseDialog, {
             width: '75vw',
