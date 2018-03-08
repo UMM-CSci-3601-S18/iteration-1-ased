@@ -30,12 +30,9 @@ public class Server {
 
         EmojiController emojiController = new EmojiController(emojiDatabase);
         EmojiRequestHandler emojiRequestHandler = new EmojiRequestHandler(emojiController);
-//        MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
         MongoDatabase goalDatabase = mongoClient.getDatabase(goalDatabaseName);
 
 
-    //    UserController userController = new UserController(userDatabase);
-     //   UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
 
 
         GoalController goalController = new GoalController(goalDatabase);
@@ -76,7 +73,7 @@ public class Server {
         get("api/emojis", emojiRequestHandler::getEmojis);
 
         // Add an emoji to the database
-        get("api/emojis/new", emojiRequestHandler::submitEmoji);
+        post("api/emojis/new", emojiRequestHandler::submitEmoji);
         /// User Endpoints ///////////////////////////
         /////////////////////////////////////////////
 
@@ -94,7 +91,6 @@ public class Server {
 
 
 
-        post("api/emojis/new", emojiRequestHandler::submitEmoji);
 
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.

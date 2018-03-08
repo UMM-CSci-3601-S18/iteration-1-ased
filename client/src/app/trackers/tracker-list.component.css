@@ -1,0 +1,18 @@
+#title input {
+    width:16%;
+    min-width: 100px;
+}
+
+#list-title {
+    padding-right: 14px;
+}
+
+.Trackers{
+    padding-top: 120px;
+}
+
+body {
+    background-image: url("https://hdwallsource.com/desktop-images-15066.html");
+    font-family: "Nanum Gothic";
+    font-size: 30px;
+}

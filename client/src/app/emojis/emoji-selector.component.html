@@ -17,7 +17,8 @@
                 <img
                     src="../../assets/Happy-emoji.png"
                     alt="Happy"
-                    class="emoji_img"/>
+                    class="emoji_img"
+                    id="happy_emoji"/>
             </label>
 
             <input  id="sad" type="radio" class="input-hidden" name="emoji" [(ngModel)]="emojiVal" value="sad">
@@ -25,7 +26,8 @@
                 <img
                     src="../../assets/Sad-emoji.png"
                     alt="Sad"
-                    class="emoji_img"/>
+                    class="emoji_img"
+                    id="sad_emoji"/>
             </label>
 
             <input  id="angry" type="radio" class="input-hidden" name="emoji" [(ngModel)]="emojiVal" value="angry">
@@ -33,7 +35,8 @@
                 <img
                     src="../../assets/Angry-emoji.png"
                     alt="Angry"
-                    class="emoji_img"/>
+                    class="emoji_img"
+                    id="angry_emoji"/>
             </label>
 
             <input  id="neutral" type="radio" class="input-hidden" name="emoji" [(ngModel)]="emojiVal" value="neutral">
@@ -41,13 +44,14 @@
                 <img
                     src="../../assets/Neutral-emoji.png"
                     alt="Neutral"
-                    class="emoji_img"/>
+                    class="emoji_img"
+                    id="neutral_emoji"/>
             </label>
 
 
 
 
-            <p>
+            <p id="userInputDisplay">
                 user: {{emojiUser}}
                 |
                 value: {{emojiVal}}
