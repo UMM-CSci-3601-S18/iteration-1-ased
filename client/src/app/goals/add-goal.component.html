@@ -1,0 +1,30 @@
+
+
+<div class="set-goals" layout-gt-sm="row">
+    <div flex-gt-sm="80" flex-offset-gt-sm="10">
+        <mat-card>
+            <mat-card-title>New Goal</mat-card-title>
+                <mat-divider></mat-divider>
+            <mat-card-content>
+            <mat-form-field>
+                <input matInput #input id="titleField" placeholder="Title" [(ngModel)]="data.goal.title">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput #input id="timeField" type="text" placeholder="Time" [(ngModel)]="data.goal.time">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput #input id="descriptionField" placeholder="Description" [(ngModel)]="data.goal.description">
+            </mat-form-field>
+
+                <!-- [mat-dialog-close]="data.goal" causes the data.goal object to be returned when the dialog is closed. -->
+
+
+
+                <button mat-button id="confirmAddGoalButton" [mat-dialog-close]="data.goal" type="button">Add Goals</button>
+            </mat-card-content>
+        </mat-card>
+        <button mat-raised-button id="exitWithoutAddingButton" (click)="onNoClick()" type="button">Exit</button>
+    </div>
+</div>
+
+
