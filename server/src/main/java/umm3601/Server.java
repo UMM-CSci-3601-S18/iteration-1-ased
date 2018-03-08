@@ -8,6 +8,9 @@ import umm3601.Emojis.EmojiController;
 import umm3601.Emojis.EmojiRequestHandler;
 import umm3601.goals.GoalsController;
 
+import umm3601.goal.GoalController;
+import umm3601.goal.GoalRequestHandler;
+
 import java.io.IOException;
 
 
@@ -16,6 +19,8 @@ import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class Server {
     private static final String emojiDataBaseName = "dev";
+  //  private static final String userDatabaseName = "dev";
+    private static final String goalDatabaseName = "dev";
     private static final int serverPort = 4567;
 
     public static void main(String[] args) throws IOException {
@@ -25,6 +30,19 @@ public class Server {
 
         EmojiController emojiController = new EmojiController(emojiDatabase);
         EmojiRequestHandler emojiRequestHandler = new EmojiRequestHandler(emojiController);
+//        MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
+        MongoDatabase goalDatabase = mongoClient.getDatabase(goalDatabaseName);
+
+
+    //    UserController userController = new UserController(userDatabase);
+     //   UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
+
+
+        GoalController goalController = new GoalController(goalDatabase);
+        GoalRequestHandler goalRequestHandler = new GoalRequestHandler(goalController);
+
+
+
 
         //Configure Spark
         port(serverPort);
@@ -57,6 +75,23 @@ public class Server {
 
         // Add an emoji to the database
         get("api/emojis/new", emojiRequestHandler::submitEmoji);
+        /// User Endpoints ///////////////////////////
+        /////////////////////////////////////////////
+
+        //List users, filtered using query parameters
+
+
+        // List goals, filtered using query parameters
+
+
+        get("api/goals", goalRequestHandler::getGoals);
+        get("api/goals/:id", goalRequestHandler::getGoalJSON);
+        post("api/goals/new", goalRequestHandler::addNewGoal);
+
+
+
+
+
 
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.

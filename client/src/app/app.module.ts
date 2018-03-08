@@ -7,14 +7,22 @@ import { MATERIAL_COMPATIBILITY_MODE } from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
+import {Routing} from './app.routes';
 
 import {EmojiSelectorService} from "./emojis/emoji-selector.service";
 import {EmojiSelectorComponent} from './emojis/emoji-selector.component';
 import {EmojiSelectorResponseDialog} from './emojis/emoji-selector.component';
-import {Routing} from './app.routes';
+
+
+import {GoalListComponent} from'./goals/goal-list.component';
+import {GoalListService} from './goals/goal-list.service';
+
 import {APP_BASE_HREF} from '@angular/common';
 
 import {CustomModule} from './custom.module';
+
+
+import {AddGoalComponent} from'./goals/add-goal.component';
 
 
 
@@ -30,17 +38,30 @@ import {CustomModule} from './custom.module';
         HomeComponent,
 
         EmojiSelectorComponent,
-        EmojiSelectorResponseDialog
+        EmojiSelectorResponseDialog,
+
+
+
+        GoalListComponent,
+        AddGoalComponent
+
     ],
     providers: [
 
         EmojiSelectorService,
+
+        GoalListService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
+
+
     ],
     entryComponents: [
 
         EmojiSelectorResponseDialog,
+    //  AddUserComponent,
+      AddGoalComponent
+
     ],
     bootstrap: [AppComponent]
 })
