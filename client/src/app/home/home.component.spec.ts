@@ -29,9 +29,4 @@ describe('Home', () => {
     });
 
 
-    it('displays a greeting', () => {
-        fixture.detectChanges();
-        expect(el.textContent).toContain(component.text);
-    });
-
 });
