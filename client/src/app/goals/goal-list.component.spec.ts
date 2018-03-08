@@ -1,11 +1,7 @@
-/*
-
-
-
 import {ComponentFixture, TestBed, async} from '@angular/core/testing';
-import {User} from './user';
-import {UserListComponent} from './user-list.component';
-import {UserListService} from './user-list.service';
+import {Goal} from './goal';
+import {GoalListComponent} from './goal-list.component';
+import {GoalListService} from './goal-list.service';
 import {Observable} from 'rxjs/Observable';
 import {FormsModule} from '@angular/forms';
 import {CustomModule} from '../custom.module';
@@ -15,178 +11,176 @@ import {MatDialog} from '@angular/material';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 
-describe('User list', () => {
+describe('Goal list', () => {
 
-    let userList: UserListComponent;
-    let fixture: ComponentFixture<UserListComponent>;
+    let goalList: GoalListComponent;
+    let fixture: ComponentFixture<GoalListComponent>;
 
-    let userListServiceStub: {
-        getUsers: () => Observable<User[]>
+    let goalListServiceStub: {
+        getGoals: () => Observable<Goal[]>
     };
 
     beforeEach(() => {
-        // stub UserService for test purposes
-        userListServiceStub = {
-            getUsers: () => Observable.of([
+        // stub GoalService for test purposes
+        goalListServiceStub = {
+            getGoals: () => Observable.of([
                 {
-                    _id: 'chris_id',
-                    name: 'Chris',
-                    age: 25,
-                    company: 'UMM',
-                    email: 'chris@this.that'
+
+                    _id:'5aa0505e3064dd6667038f9bb',
+                    title: 'Reading assig.',
+                    time: '2 PM',
+                    description: 'History'
                 },
                 {
-                    _id: 'pat_id',
-                    name: 'Pat',
-                    age: 37,
-                    company: 'IBM',
-                    email: 'pat@something.com'
+                    _id:'5aa051053064dd6667038f9cc',
+                    title: 'laundry',
+                    time: '2 PM',
+                    description: 'gym clothes'
+
                 },
                 {
-                    _id: 'jamie_id',
-                    name: 'Jamie',
-                    age: 37,
-                    company: 'Frogs, Inc.',
-                    email: 'jamie@frogs.com'
+                    _id: '5aa05f683064dd0fc2e576099',
+                    title: 'do the dishes',
+                    time: '3 PM',
+                    description: 'minutes'
                 }
             ])
         };
 
         TestBed.configureTestingModule({
             imports: [CustomModule],
-            declarations: [UserListComponent],
-            // providers:    [ UserListService ]  // NO! Don't provide the real service!
+            declarations: [GoalListComponent],
+            // providers:    [ GoalListService ]  // NO! Don't provide the real service!
             // Provide a test-double instead
-            providers: [{provide: UserListService, useValue: userListServiceStub},
+            providers: [{provide: GoalListService, useValue: goalListServiceStub},
                 {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
         });
     });
 
     beforeEach(async(() => {
         TestBed.compileComponents().then(() => {
-            fixture = TestBed.createComponent(UserListComponent);
-            userList = fixture.componentInstance;
+            fixture = TestBed.createComponent(GoalListComponent);
+            goalList = fixture.componentInstance;
             fixture.detectChanges();
         });
     }));
 
-    it('contains all the users', () => {
-        expect(userList.users.length).toBe(3);
+    it('contains all the goals', () => {
+        expect(goalList.goals.length).toBe(3);
     });
 
-    it('contains a user named \'Chris\'', () => {
-        expect(userList.users.some((user: User) => user.name === 'Chris')).toBe(true);
+    it('contains a goal named \'Reading assig.\'', () => {
+        expect(goalList.goals.some((goal: Goal) => goal.title === 'Reading assig.')).toBe(true);
     });
 
-    it('contain a user named \'Jamie\'', () => {
-        expect(userList.users.some((user: User) => user.name === 'Jamie')).toBe(true);
+    it('contain a goal named \'laundry\'', () => {
+        expect(goalList.goals.some((goal: Goal) => goal.title === 'laundry')).toBe(true);
     });
 
-    it('doesn\'t contain a user named \'Santa\'', () => {
-        expect(userList.users.some((user: User) => user.name === 'Santa')).toBe(false);
+    it('doesn\'t contain a goal named \'homework\'', () => {
+        expect(goalList.goals.some((goal: Goal) => goal.title === 'homework')).toBe(false);
     });
 
-    it('has two users that are 37 years old', () => {
-        expect(userList.users.filter((user: User) => user.age === 37).length).toBe(2);
+   /* it('has two goals that are 37 years old', () => {
+        expect(goalList.goals.filter((goal: Goal) => goal.age === 37).length).toBe(2);
     });
-
-    it('user list filters by name', () => {
-        expect(userList.filteredUsers.length).toBe(3);
-        userList.userName = 'a';
-        userList.refreshUsers().subscribe(() => {
-            expect(userList.filteredUsers.length).toBe(2);
+*/
+    it('goal list filters by title', () => {
+        expect(goalList.filteredGoals.length).toBe(3);
+        goalList.goalTitle = 'a';
+        goalList.refreshGoals().subscribe(() => {
+            expect(goalList.filteredGoals.length).toBe(2);
         });
     });
 
-    it('user list filters by age', () => {
-        expect(userList.filteredUsers.length).toBe(3);
-        userList.userAge = 37;
-        userList.refreshUsers().subscribe(() => {
-            expect(userList.filteredUsers.length).toBe(2);
+ /*   it('goal list filters by age', () => {
+        expect(goalList.filteredGoals.length).toBe(3);
+        goalList.goalAge = 37;
+        goalList.refreshGoals().subscribe(() => {
+            expect(goalList.filteredGoals.length).toBe(2);
         });
     });
 
-    it('user list filters by name and age', () => {
-        expect(userList.filteredUsers.length).toBe(3);
-        userList.userAge = 37;
-        userList.userName = 'i';
-        userList.refreshUsers().subscribe(() => {
-            expect(userList.filteredUsers.length).toBe(1);
+    it('goal list filters by name and age', () => {
+        expect(goalList.filteredGoals.length).toBe(3);
+        goalList.goalAge = 37;
+        goalList.goalName = 'i';
+        goalList.refreshGoals().subscribe(() => {
+            expect(goalList.filteredGoals.length).toBe(1);
         });
-    });
+    });   */
 
 });
 
-describe('Misbehaving User List', () => {
-    let userList: UserListComponent;
-    let fixture: ComponentFixture<UserListComponent>;
+describe('Misbehaving Goal List', () => {
+    let goalList: GoalListComponent;
+    let fixture: ComponentFixture<GoalListComponent>;
 
-    let userListServiceStub: {
-        getUsers: () => Observable<User[]>
+    let goalListServiceStub: {
+        getGoals: () => Observable<Goal[]>
     };
 
     beforeEach(() => {
-        // stub UserService for test purposes
-        userListServiceStub = {
-            getUsers: () => Observable.create(observer => {
+        // stub GoalService for test purposes
+        goalListServiceStub = {
+            getGoals: () => Observable.create(observer => {
                 observer.error('Error-prone observable');
             })
         };
 
         TestBed.configureTestingModule({
             imports: [FormsModule, CustomModule],
-            declarations: [UserListComponent],
-            providers: [{provide: UserListService, useValue: userListServiceStub},
+            declarations: [GoalListComponent],
+            providers: [{provide: GoalListService, useValue: goalListServiceStub},
                 {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
         });
     });
 
     beforeEach(async(() => {
         TestBed.compileComponents().then(() => {
-            fixture = TestBed.createComponent(UserListComponent);
-            userList = fixture.componentInstance;
+            fixture = TestBed.createComponent(GoalListComponent);
+            goalList = fixture.componentInstance;
             fixture.detectChanges();
         });
     }));
 
-    it('generates an error if we don\'t set up a UserListService', () => {
-        // Since the observer throws an error, we don't expect users to be defined.
-        expect(userList.users).toBeUndefined();
+    it('generates an error if we don\'t set up a GoalListService', () => {
+        // Since the observer throws an error, we don't expect goals to be defined.
+        expect(goalList.goals).toBeUndefined();
     });
 });
 
 
-describe('Adding a user', () => {
-    let userList: UserListComponent;
-    let fixture: ComponentFixture<UserListComponent>;
-    const newUser: User = {
+describe('Adding a goal', () => {
+    let goalList: GoalListComponent;
+    let fixture: ComponentFixture<GoalListComponent>;
+    const newGoal: Goal = {
         _id: '',
-        name: 'Sam',
-        age: 67,
-        company: 'Things and stuff',
-        email: 'sam@this.and.that'
+        title: 'gym',
+        time: '6 AM',
+        description: 'Things and stuff',
     };
-    const newId = 'sam_id';
+    const newId = 'gym_id';
 
-    let calledUser: User;
+    let calledGoal: Goal;
 
-    let userListServiceStub: {
-        getUsers: () => Observable<User[]>,
-        addNewUser: (newUser: User) => Observable<{'$oid': string}>
+    let goalListServiceStub: {
+        getGoals: () => Observable<Goal[]>,
+        addNewGoal: (newGoal: Goal) => Observable<{'$oid': string}>
     };
     let mockMatDialog: {
-        open: (AddUserComponent, any) => {
-            afterClosed: () => Observable<User>
+        open: (AddGoalComponent, any) => {
+            afterClosed: () => Observable<Goal>
         };
     };
 
     beforeEach(() => {
-        calledUser = null;
-        // stub UserService for test purposes
-        userListServiceStub = {
-            getUsers: () => Observable.of([]),
-            addNewUser: (userToAdd: User) => {
-                calledUser = userToAdd;
+        calledGoal = null;
+        // stub GoalService for test purposes
+        goalListServiceStub = {
+            getGoals: () => Observable.of([]),
+            addNewGoal: (goalToAdd: Goal) => {
+                calledGoal = goalToAdd;
                 return Observable.of({
                     '$oid': newId
                 });
@@ -196,7 +190,7 @@ describe('Adding a user', () => {
             open: () => {
                 return {
                     afterClosed: () => {
-                        return Observable.of(newUser);
+                        return Observable.of(newGoal);
                     }
                 };
             }
@@ -204,9 +198,9 @@ describe('Adding a user', () => {
 
         TestBed.configureTestingModule({
             imports: [FormsModule, CustomModule],
-            declarations: [UserListComponent],
+            declarations: [GoalListComponent],
             providers: [
-                {provide: UserListService, useValue: userListServiceStub},
+                {provide: GoalListService, useValue: goalListServiceStub},
                 {provide: MatDialog, useValue: mockMatDialog},
                 {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
         });
@@ -214,18 +208,17 @@ describe('Adding a user', () => {
 
     beforeEach(async(() => {
         TestBed.compileComponents().then(() => {
-            fixture = TestBed.createComponent(UserListComponent);
-            userList = fixture.componentInstance;
+            fixture = TestBed.createComponent(GoalListComponent);
+            goalList = fixture.componentInstance;
             fixture.detectChanges();
         });
     }));
 
-    it('calls UserListService.addUser', () => {
-        expect(calledUser).toBeNull();
-        userList.openDialog();
-        expect(calledUser).toEqual(newUser);
+    it('calls GoalListService.addGoal', () => {
+        expect(calledGoal).toBeNull();
+        goalList.openDialog();
+        expect(calledGoal).toEqual(newGoal);
     });
 });
 
 
-*/

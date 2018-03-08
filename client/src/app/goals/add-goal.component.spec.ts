@@ -1,6 +1,3 @@
-/*
-
-
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MatDialogRef, MAT_DIALOG_DATA, MATERIAL_COMPATIBILITY_MODE} from '@angular/material';
@@ -30,11 +27,11 @@ describe('Add goal component', () => {
         });
     }));
 
-*/
 
 
 
-/*
+
+
 
     beforeEach(() => {
         calledClose = false;
@@ -43,11 +40,11 @@ describe('Add goal component', () => {
     });
 
 
-*/
 
-//
-  //  it('closes properly', () => {
-   //     addGoalComponent.onNoClick();
-   //     expect(calledClose).toBe(true);
-  //  });
- //  });
+
+
+    it('closes properly', () => {
+        addGoalComponent.onNoClick();
+        expect(calledClose).toBe(true);
+    });
+   });

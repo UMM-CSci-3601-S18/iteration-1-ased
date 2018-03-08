@@ -1,4 +1,4 @@
-package umm3601.user;
+/*package umm3601.user;
 
 import com.google.gson.Gson;
 import com.mongodb.*;
@@ -12,35 +12,32 @@ import java.util.Iterator;
 import java.util.Map;
 
 import static com.mongodb.client.model.Filters.eq;
-
+*/
 /**
  * Controller that manages requests for info about users.
  */
+/*
+
 public class UserController {
 
     private final Gson gson;
     private MongoDatabase database;
     private final MongoCollection<Document> userCollection;
-
+*/
     /**
      * Construct a controller for users.
      *
      * @param database the database containing user data
      */
+    /*
+
     public UserController(MongoDatabase database) {
         gson = new Gson();
         this.database = database;
         userCollection = database.getCollection("users");
     }
 
-    /**
-     * Helper method that gets a single user specified by the `id`
-     * parameter in the request.
-     *
-     * @param id the Mongo ID of the desired user
-     * @return the desired user as a JSON object if the user with that ID is found,
-     * and `null` if no user with that ID is found
-     */
+
     public String getUser(String id) {
         FindIterable<Document> jsonUsers
             = userCollection
@@ -57,14 +54,7 @@ public class UserController {
     }
 
 
-    /** Helper method which iterates through the collection, receiving all
-     * documents if no query parameter is specified. If the age query parameter
-     * is specified, then the collection is filtered so only documents of that
-     * specified age are found.
-     *
-     * @param queryParams
-     * @return an array of Users in a JSON formatted string
-     */
+
     public String getUsers(Map<String, String[]> queryParams) {
 
         Document filterDoc = new Document();
@@ -88,7 +78,7 @@ public class UserController {
         return JSON.serialize(matchingUsers);
     }
 
-
+*/
     /**
      * Helper method which appends received user information to the to-be added document
      *
@@ -98,6 +88,8 @@ public class UserController {
      * @param email
      * @return boolean after successfully or unsuccessfully adding a user
      */
+
+    /*
     public String addNewUser(String name, int age, String company, String email) {
 
         Document newUser = new Document();
@@ -118,3 +110,4 @@ public class UserController {
         }
     }
 }
+*/

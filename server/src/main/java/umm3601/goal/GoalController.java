@@ -70,8 +70,11 @@ public class GoalController {
         Document filterDoc = new Document();
 
         if (queryParams.containsKey("time")) {
-            int targetTime = Integer.parseInt(queryParams.get("time")[0]);
-            filterDoc = filterDoc.append("time", targetTime);
+            String targetContent = (queryParams.get("time")[0]);
+            Document contentRegQuery = new Document();
+            contentRegQuery.append("$regex", targetContent);
+            contentRegQuery.append("$options", "i");
+            filterDoc = filterDoc.append("time", contentRegQuery);
         }
 
         if (queryParams.containsKey("description")) {
@@ -97,7 +100,7 @@ public class GoalController {
      * @param description
      * @return boolean after successfully or unsuccessfully adding a goal
      */
-    public String addNewGoal(String title, int time, String description) {
+    public String addNewGoal(String title, String time, String description) {
 
         Document newGoal = new Document();
         newGoal.append("title", title);

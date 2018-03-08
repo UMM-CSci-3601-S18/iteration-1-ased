@@ -1,4 +1,4 @@
-
+/*
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {TestBed} from '@angular/core/testing';
 import {HttpClient} from '@angular/common/http';
@@ -153,3 +153,4 @@ describe('User list service: ', () => {
 
 
 
+*/

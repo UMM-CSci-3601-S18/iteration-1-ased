@@ -1,3 +1,5 @@
+/*
+
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
@@ -33,6 +35,10 @@ export class UserListService {
         return this.http.request(this.userUrl).map(res => res.json());
     }
     */
+
+
+
+/*
 
     filterByCompany(userCompany?: string): void {
         if (!(userCompany == null || userCompany === '')) {
@@ -87,3 +93,4 @@ export class UserListService {
         return this.http.post<{'$oid': string}>(this.userUrl + '/new', newUser, httpOptions);
     }
 }
+*/

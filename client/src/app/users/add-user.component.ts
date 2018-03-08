@@ -1,3 +1,4 @@
+/*
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {User} from './user';
@@ -16,3 +17,5 @@ export class AddUserComponent {
         this.dialogRef.close();
     }
 }
+
+*/

@@ -4,8 +4,8 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import spark.Request;
 import spark.Response;
-import umm3601.user.UserController;
-import umm3601.user.UserRequestHandler;
+//import umm3601.user.UserController;
+//import umm3601.user.UserRequestHandler;
 import umm3601.goal.GoalController;
 import umm3601.goal.GoalRequestHandler;
 
@@ -16,7 +16,7 @@ import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class Server {
-    private static final String userDatabaseName = "dev";
+  //  private static final String userDatabaseName = "dev";
     private static final String goalDatabaseName = "dev";
     private static final int serverPort = 4567;
 
@@ -24,12 +24,12 @@ public class Server {
 
         MongoClient mongoClient = new MongoClient();
 
-        MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
+//        MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
         MongoDatabase goalDatabase = mongoClient.getDatabase(goalDatabaseName);
 
 
-        UserController userController = new UserController(userDatabase);
-        UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
+    //    UserController userController = new UserController(userDatabase);
+     //   UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
 
 
         GoalController goalController = new GoalController(goalDatabase);
@@ -76,9 +76,9 @@ public class Server {
 
         //List users, filtered using query parameters
 
-        get("api/users", userRequestHandler::getUsers);
-        get("api/users/:id", userRequestHandler::getUserJSON);
-        post("api/users/new", userRequestHandler::addNewUser);
+  //      get("api/users", userRequestHandler::getUsers);
+    //    get("api/users/:id", userRequestHandler::getUserJSON);
+     //   post("api/users/new", userRequestHandler::addNewUser);
 
 
         // List goals, filtered using query parameters

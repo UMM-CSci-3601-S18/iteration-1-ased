@@ -1,46 +1,42 @@
-/*
-
-
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {TestBed} from '@angular/core/testing';
 import {HttpClient} from '@angular/common/http';
 
-import {User} from './user';
-import {UserListService} from './user-list.service';
+import {Goal} from './goal';
+import {GoalListService} from './goal-list.service';
 
-describe('User list service: ', () => {
-    // A small collection of test users
-    const testUsers: User[] = [
+describe('Goal list service: ', () => {
+    // A small collection of test goals
+    const testGoals: Goal[] = [
         {
-            _id: 'chris_id',
-            name: 'Chris',
-            age: 25,
-            company: 'UMM',
-            email: 'chris@this.that'
+
+            _id:'5aa0505e3064dd6667038f9bb',
+            title: 'Reading assig.',
+            time: '2 PM',
+            description: 'History'
         },
         {
-            _id: 'pat_id',
-            name: 'Pat',
-            age: 37,
-            company: 'IBM',
-            email: 'pat@something.com'
+            _id:'5aa051053064dd6667038f9cc',
+            title: 'laundry',
+            time: '2 PM',
+            description: 'gym clothes'
+
         },
         {
-            _id: 'jamie_id',
-            name: 'Jamie',
-            age: 37,
-            company: 'Frogs, Inc.',
-            email: 'jamie@frogs.com'
+            _id: '5aa05f683064dd0fc2e576099',
+            title: 'do the dishes',
+            time: '3 PM',
+            description: 'minutes'
         }
     ];
-    const mUsers: User[] = testUsers.filter(user =>
-        user.company.toLowerCase().indexOf('m') !== -1
+    const mGoals: Goal[] = testGoals.filter(goal =>
+        goal.time.toLowerCase().indexOf('m') !== -1
     );
 
-    // We will need some url information from the userListService to meaningfully test company filtering;
+    // We will need some url information from the goalListService to meaningfully test title filtering;
     // https://stackoverflow.com/questions/35987055/how-to-write-unit-testing-for-angular-2-typescript-for-private-methods-with-ja
-    let userListService: UserListService;
-    let currentlyImpossibleToGenerateSearchUserUrl: string;
+    let goalListService: GoalListService;
+    let currentlyImpossibleToGenerateSearchGoalUrl: string;
 
     // These are used to mock the HTTP requests so that we (a) don't have to
     // have the server running and (b) we can check exactly which HTTP
@@ -57,7 +53,7 @@ describe('User list service: ', () => {
         httpTestingController = TestBed.get(HttpTestingController);
         // Construct an instance of the service with the mock
         // HTTP client.
-        userListService = new UserListService(httpClient);
+        goalListService = new GoalListService(httpClient);
     });
 
     afterEach(() => {
@@ -65,92 +61,91 @@ describe('User list service: ', () => {
         httpTestingController.verify();
     });
 
-    it('getUsers() calls api/users', () => {
-        // Assert that the users we get from this call to getUsers()
-        // should be our set of test users. Because we're subscribing
-        // to the result of getUsers(), this won't actually get
+    it('getGoals() calls api/goals', () => {
+        // Assert that the goals we get from this call to getGoals()
+        // should be our set of test goals. Because we're subscribing
+        // to the result of getGoals(), this won't actually get
         // checked until the mocked HTTP request "returns" a response.
-        // This happens when we call req.flush(testUsers) a few lines
+        // This happens when we call req.flush(testGoals) a few lines
         // down.
-        userListService.getUsers().subscribe(
-            users => expect(users).toBe(testUsers)
+        goalListService.getGoals().subscribe(
+            goals => expect(goals).toBe(testGoals)
         );
 
         // Specify that (exactly) one request will be made to the specified URL.
-        const req = httpTestingController.expectOne(userListService.baseUrl);
+        const req = httpTestingController.expectOne(goalListService.baseUrl);
         // Check that the request made to that URL was a GET request.
         expect(req.request.method).toEqual('GET');
         // Specify the content of the response to that request. This
         // triggers the subscribe above, which leads to that check
         // actually being performed.
-        req.flush(testUsers);
+        req.flush(testGoals);
     });
 
-    it('getUsers(userCompany) adds appropriate param string to called URL', () => {
-        userListService.getUsers('m').subscribe(
-            users => expect(users).toEqual(mUsers)
+    it('getGoals(goalTitle) adds appropriate param string to called URL', () => {
+        goalListService.getGoals('m').subscribe(
+            goals => expect(goals).toEqual(mGoals)
         );
 
-        const req = httpTestingController.expectOne(userListService.baseUrl + '?company=m&');
+        const req = httpTestingController.expectOne(goalListService.baseUrl + '?title=m&');
         expect(req.request.method).toEqual('GET');
-        req.flush(mUsers);
+        req.flush(mGoals);
     });
 
-    it('filterByCompany(userCompany) deals appropriately with a URL that already had a company', () => {
-        currentlyImpossibleToGenerateSearchUserUrl = userListService.baseUrl + '?company=f&something=k&';
-        userListService['userUrl'] = currentlyImpossibleToGenerateSearchUserUrl;
-        userListService.filterByCompany('m');
-        expect(userListService['userUrl']).toEqual(userListService.baseUrl + '?something=k&company=m&');
+    it('filterByTime(goalTime) deals appropriately with a URL that already had a Title', () => {
+        currentlyImpossibleToGenerateSearchGoalUrl = goalListService.baseUrl + '?title=f&something=k&';
+        goalListService['goalUrl'] = currentlyImpossibleToGenerateSearchGoalUrl;
+        goalListService.filterByTitle('m');
+        expect(goalListService['goalUrl']).toEqual(goalListService.baseUrl + '?something=k&title=m&');
     });
 
-    it('filterByCompany(userCompany) deals appropriately with a URL that already had some filtering, but no company', () => {
-        currentlyImpossibleToGenerateSearchUserUrl = userListService.baseUrl + '?something=k&';
-        userListService['userUrl'] = currentlyImpossibleToGenerateSearchUserUrl;
-        userListService.filterByCompany('m');
-        expect(userListService['userUrl']).toEqual(userListService.baseUrl + '?something=k&company=m&');
+    it('filterByTitle(goalTitle) deals appropriately with a URL that already had some filtering, but no title', () => {
+        currentlyImpossibleToGenerateSearchGoalUrl = goalListService.baseUrl + '?something=k&';
+        goalListService['goalUrl'] = currentlyImpossibleToGenerateSearchGoalUrl;
+        goalListService.filterByTitle('m');
+        expect(goalListService['goalUrl']).toEqual(goalListService.baseUrl + '?something=k&title=m&');
     });
 
-    it('filterByCompany(userCompany) deals appropriately with a URL has the keyword company, but nothing after the =', () => {
-        currentlyImpossibleToGenerateSearchUserUrl = userListService.baseUrl + '?company=&';
-        userListService['userUrl'] = currentlyImpossibleToGenerateSearchUserUrl;
-        userListService.filterByCompany('');
-        expect(userListService['userUrl']).toEqual(userListService.baseUrl + '');
+    it('filterByTitle(goalTitle) deals appropriately with a URL has the keyword title, but nothing after the =', () => {
+        currentlyImpossibleToGenerateSearchGoalUrl = goalListService.baseUrl + '?title=&';
+        goalListService['goalUrl'] = currentlyImpossibleToGenerateSearchGoalUrl;
+        goalListService.filterByTitle('');
+        expect(goalListService['goalUrl']).toEqual(goalListService.baseUrl + '');
     });
 
-    it('getUserById() calls api/users/id', () => {
-        const targetUser: User = testUsers[1];
-        const targetId: string = targetUser._id;
-        userListService.getUserById(targetId).subscribe(
-            user => expect(user).toBe(targetUser)
+    it('getGoalById() calls api/goals/id', () => {
+        const targetGoal: Goal = testGoals[1];
+        const targetId: string = targetGoal._id;
+        goalListService.getGoalById(targetId).subscribe(
+            goal => expect(goal).toBe(targetGoal)
         );
 
-        const expectedUrl: string = userListService.baseUrl + '/' + targetId;
+        const expectedUrl: string = goalListService.baseUrl + '/' + targetId;
         const req = httpTestingController.expectOne(expectedUrl);
         expect(req.request.method).toEqual('GET');
-        req.flush(targetUser);
+        req.flush(targetGoal);
     });
 
-    it('adding a user calls api/users/new', () => {
-        const jesse_id = { '$oid': 'jesse_id' };
-        const newUser: User = {
-            _id: '',
-            name: 'Jesse',
-            age: 72,
-            company: 'Smithsonian',
-            email: 'jesse@stuff.com'
+    it('adding a goal calls api/goals/new', () => {
+        const aa0505e3064dd6667038f9bbc = { '$oid': 'aa0505e3064dd6667038f9bb' };
+        const newGoal: Goal = {
+            _id:'aa0505e3064dd6667038f9bbc',
+            title: 'Work',
+            time: '9 AM',
+            description: 'At bookstore'
         };
 
-        userListService.addNewUser(newUser).subscribe(
+        goalListService.addNewGoal(newGoal).subscribe(
             id => {
-                expect(id).toBe(jesse_id);
+                expect(id).toBe(aa0505e3064dd6667038f9bbc);
             }
         );
 
-        const expectedUrl: string = userListService.baseUrl + '/new';
+        const expectedUrl: string = goalListService.baseUrl + '/new';
         const req = httpTestingController.expectOne(expectedUrl);
         expect(req.request.method).toEqual('POST');
-        req.flush(jesse_id);
+        req.flush(aa0505e3064dd6667038f9bbc);
     });
 });
 
-*/
+

@@ -36,13 +36,21 @@ import static org.junit.Assert.*;
 public class MongoSpec {
 
     private MongoCollection<Document> userDocuments;
+    private MongoCollection<Document> goalDocuments;
 
     @Before
     public void clearAndPopulateDB() {
         MongoClient mongoClient = new MongoClient();
         MongoDatabase db = mongoClient.getDatabase("test");
+
+
+
         userDocuments = db.getCollection("users");
         userDocuments.drop();
+
+        goalDocuments = db.getCollection("goals");
+        goalDocuments.drop();
+
         List<Document> testUsers = new ArrayList<>();
         testUsers.add(Document.parse("{\n" +
                 "                    name: \"Chris\",\n" +
@@ -63,18 +71,59 @@ public class MongoSpec {
                 "                    email: \"jamie@frogs.com\"\n" +
                 "                }"));
         userDocuments.insertMany(testUsers);
+
+
+        List<Document> testGoals = new ArrayList<>();
+        testGoals.add(Document.parse("{\n" +
+            "                    title: \"Reading assig.\",\n" +
+            "                    time: \"2 PM\",\n" +
+            "                    description: \"History\",\n" +
+            "                }"));
+        testGoals.add(Document.parse("{\n" +
+            "                    name: \"laundry\",\n" +
+            "                    age:  \" 2PM\",\n" +
+            "                    description: \"gym clothes\",\n" +
+            "                }"));
+        testGoals.add(Document.parse("{\n" +
+            "                    title: \"do the dishes\",\n" +
+            "                    time: \"3 PM\",\n" +
+            "                    description: \"minutes, Inc.\",\n" +
+            "                }"));
+        goalDocuments.insertMany(testGoals);
+
+
+
+
     }
 
     private List<Document> intoList(MongoIterable<Document> documents) {
         List<Document> users = new ArrayList<>();
         documents.into(users);
         return users;
+
+
     }
+
+
+
+
+
+
+
 
     private int countUsers(FindIterable<Document> documents) {
         List<Document> users = intoList(documents);
         return users.size();
     }
+
+    private int countGoals(FindIterable<Document> documents) {
+        List<Document> goals = intoList(documents);
+        return goals.size();
+    }
+
+
+
+
 
     @Test
     public void shouldBeThreeUsers() {
@@ -82,6 +131,16 @@ public class MongoSpec {
         int numberOfUsers = countUsers(documents);
         assertEquals("Should be 3 total users", 3, numberOfUsers);
     }
+
+    @Test
+    public void shouldBeThreeGoals() {
+        FindIterable<Document> documents = goalDocuments.find();
+        int numberOfUsers = countUsers(documents);
+        assertEquals("Should be 3 total goals", 3, numberOfUsers);
+    }
+
+
+
 
     @Test
     public void shouldBeOneChris() {

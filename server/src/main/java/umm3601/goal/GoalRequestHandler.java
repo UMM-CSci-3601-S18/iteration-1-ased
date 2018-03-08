@@ -6,9 +6,7 @@ import org.bson.types.ObjectId;
 import spark.Request;
 import spark.Response;
 
-/**
- * Created by Brian on 11/29/2017.
- */
+
 public class GoalRequestHandler {
 
     private final GoalController goalController;

@@ -9,8 +9,8 @@ import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 
 
-import {UserListComponent} from './users/user-list.component';
-import {UserListService} from './users/user-list.service';
+// import {UserListComponent} from './users/user-list.component';
+//import {UserListService} from './users/user-list.service';
 import {GoalListComponent} from'./goals/goal-list.component';
 import {GoalListService} from './goals/goal-list.service';
 
@@ -19,7 +19,7 @@ import {APP_BASE_HREF} from '@angular/common';
 
 import {CustomModule} from './custom.module';
 
-import {AddUserComponent} from './users/add-user.component';
+//import {AddUserComponent} from './users/add-user.component';
 import {AddGoalComponent} from'./goals/add-goal.component';
 
 
@@ -35,18 +35,18 @@ import {AddGoalComponent} from'./goals/add-goal.component';
         AppComponent,
         HomeComponent,
 
-        UserListComponent,
-        AddUserComponent,
+     //   UserListComponent,
+     //   AddUserComponent,
 
         GoalListComponent,
         AddGoalComponent
 
     ],
     providers: [
-        UserListService,
+  /*      UserListService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
-
+*/
         GoalListService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
@@ -54,7 +54,7 @@ import {AddGoalComponent} from'./goals/add-goal.component';
 
     ],
     entryComponents: [
-      AddUserComponent,
+    //  AddUserComponent,
       AddGoalComponent
 
     ],
