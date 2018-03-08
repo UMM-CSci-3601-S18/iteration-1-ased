@@ -57,6 +57,8 @@ public class EmojiController {
         newEmoji.append("type", type);
         newEmoji.append("time_stamp", time_stamp);
 
+        System.out.println("The server went through submitEmoji in EmojiController");
+
         try {
             emojiCollection.insertOne(newEmoji);
             ObjectId id = newEmoji.getObjectId("_id");

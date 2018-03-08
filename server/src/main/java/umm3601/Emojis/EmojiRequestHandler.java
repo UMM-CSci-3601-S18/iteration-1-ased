@@ -41,6 +41,9 @@ public class EmojiRequestHandler {
     public String submitEmoji(Request req, Response res) {
         res.type("application/json");
         Object o = JSON.parse(req.body());
+
+        System.out.println("The server went through submitEmoji in EmojiRequestHandler");
+
         try {
             if(o.getClass().equals(BasicDBObject.class)) {
                 try {

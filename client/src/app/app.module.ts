@@ -8,9 +8,11 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 
-import {EmojiSelectorService} from "./emojis/emoji-selector.service";
+import {EmojiSelectorService} from './emojis/emoji-selector.service';
 import {EmojiSelectorComponent} from './emojis/emoji-selector.component';
 import {EmojiSelectorResponseDialog} from './emojis/emoji-selector.component';
+import {EmojiDisplayComponent} from './emojis/emoji-display.component';
+import {EmojiDisplayService} from './emojis/emoji-display.service';
 import {Routing} from './app.routes';
 import {APP_BASE_HREF} from '@angular/common';
 
@@ -32,10 +34,12 @@ import {CustomModule} from './custom.module';
         HomeComponent,
         TrackerListComponent,
         EmojiSelectorComponent,
-        EmojiSelectorResponseDialog
+        EmojiSelectorResponseDialog,
+        EmojiDisplayComponent
     ],
     providers: [
 
+        EmojiDisplayService,
         EmojiSelectorService,
         TrackerListService,
         {provide: APP_BASE_HREF, useValue: '/'},

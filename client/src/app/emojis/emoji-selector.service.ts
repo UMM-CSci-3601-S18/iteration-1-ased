@@ -9,7 +9,7 @@ import {environment} from '../../environments/environment';
 
 @Injectable()
 export class EmojiSelectorService {
-    readonly baseUrl: string = environment.API_URL + 'emoji-selector';
+    readonly baseUrl: string = environment.API_URL + 'emojis';
     private emojiUrl: string = this.baseUrl;
 
 
@@ -23,8 +23,10 @@ export class EmojiSelectorService {
             }),
         };
 
+        console.log('The client went through addNewEmoji in emoji-selector.service');
+
         // Send post request to add a new to-do with the to-do data as the contents with specified headers.
-        return this.http.post<{'$oid': string}>(this.emojiUrl + "/new",newEmoji, httpOptions);
+        return this.http.post<{'$oid': string}>(this.emojiUrl + '/new', newEmoji, httpOptions);
     }
 
 
