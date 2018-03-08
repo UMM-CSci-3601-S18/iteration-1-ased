@@ -20,10 +20,6 @@ export class TrackerListService {
         return this.http.get<Tracker[]>(this.trackerUrl);
     }
 
-    getTrackerById(id: string): Observable<Tracker> {
-        return this.http.get<Tracker>(this.trackerUrl + '/' + id);
-    }
-
     filterByEmoji(trackerEmoji?: string): void {
         if (!(trackerEmoji == null || trackerEmoji === '')) {
             if (this.parameterPresent('emoji=') ) {
