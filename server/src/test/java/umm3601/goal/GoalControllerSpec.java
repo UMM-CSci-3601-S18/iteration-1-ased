@@ -101,7 +101,7 @@ public class GoalControllerSpec
                 .map(GoalControllerSpec::getName)
                 .sorted()
                 .collect(Collectors.toList());
-        List<String> expectedTitles = Arrays.asList("Reading assig.", "laundry", "do the dishes", "cook");
+        List<String> expectedTitles = Arrays.asList("Reading assig.", "cook", "do the dishes", "laundry");
        assertEquals("Title should match", expectedTitles, title);
     }
 
