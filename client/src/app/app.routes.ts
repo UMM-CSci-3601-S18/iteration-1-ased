@@ -10,6 +10,8 @@ import {EmojiDisplayComponent} from "./emojis/emoji-display.component";
 
 import {GoalListComponent} from "./goals/goal-list.component";
 
+import {TrackerListComponent} from "./trackers/tracker-list.component";
+
 // Route Configuration
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -19,6 +21,7 @@ export const routes: Routes = [
     {path: 'goals', component: GoalListComponent},
     {path: 'emoji-selector', component: EmojiSelectorComponent},
     {path: 'emoji-display', component: EmojiDisplayComponent},
+    {path: 'tracker-list', component: TrackerListComponent}
 ];
 
 export const Routing: ModuleWithProviders = RouterModule.forRoot(routes);
