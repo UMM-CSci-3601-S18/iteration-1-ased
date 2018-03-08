@@ -14,6 +14,8 @@ import {EmojiSelectorResponseDialog} from './emojis/emoji-selector.component';
 import {Routing} from './app.routes';
 import {APP_BASE_HREF} from '@angular/common';
 
+import {TrackerListService} from "./trackers/tracker-list.service";
+import {TrackerListComponent} from "./trackers/tracker-list.component";
 import {CustomModule} from './custom.module';
 
 
@@ -28,13 +30,14 @@ import {CustomModule} from './custom.module';
     declarations: [
         AppComponent,
         HomeComponent,
-
+        TrackerListComponent,
         EmojiSelectorComponent,
         EmojiSelectorResponseDialog
     ],
     providers: [
 
         EmojiSelectorService,
+        TrackerListService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
