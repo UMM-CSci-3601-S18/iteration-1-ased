@@ -8,7 +8,6 @@
 
             <input matInput #input id="emojiUserField" placeholder="User" [(ngModel)]="emojiUser">
 
-            <!-- -->
 
             <p></p>
             <form name="emoji_selector">
@@ -57,7 +56,7 @@
             </p>
 
             <button mat-raised-button id="submit" color="primary" #input type="button"
-                  (onclick)="submitEmoji(emojiUser, emojiVal)" (click)="openDialog()" >Submit</button>
+                  (click)="submitEmoji(emojiUser, emojiVal)" (click)="openDialog()" >Submit</button>
             </form>
         </mat-card>
 
