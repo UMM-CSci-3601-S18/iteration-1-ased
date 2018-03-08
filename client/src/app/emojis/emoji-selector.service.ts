@@ -24,6 +24,7 @@ export class EmojiSelectorService {
         };
 
         console.log('The client went through addNewEmoji in emoji-selector.service');
+        console.log(this.emojiUrl);
 
         // Send post request to add a new to-do with the to-do data as the contents with specified headers.
         return this.http.post<{'$oid': string}>(this.emojiUrl + '/new', newEmoji, httpOptions);

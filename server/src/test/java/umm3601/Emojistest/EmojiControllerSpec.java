@@ -1,4 +1,4 @@
-/*
+
 package umm3601.Emojistest;
 
 import com.mongodb.BasicDBObject;
@@ -21,12 +21,12 @@ import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
-*/
+
 /**
  * JUnit tests for the UserController.
  *Assert.*;
  * Created by mcphee on 22/2/17.
- *//*
+ */
 
 
 public class EmojiControllerSpec
@@ -139,6 +139,7 @@ public class EmojiControllerSpec
 
     }
 
+    /*
     @Test
     public void addEmojiTest(){
         String newId = emojiController.submitEmoji("Ethan","Ethan","Sad","3/03/2018 22:30");
@@ -156,8 +157,8 @@ public class EmojiControllerSpec
             .collect(Collectors.toList());
         assertEquals("Should return name of new user", "Ethan", name.get(4));
     }
+    */
 
 
 }
 
-*/
