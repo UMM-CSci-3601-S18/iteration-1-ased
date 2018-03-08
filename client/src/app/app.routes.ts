@@ -11,6 +11,7 @@ export const routes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'emoji-selector', component: EmojiSelectorComponent},
 
+    
     {path: 'goals', component: GoalListComponent}
 ];
 
