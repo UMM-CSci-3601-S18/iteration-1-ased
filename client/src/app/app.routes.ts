@@ -13,7 +13,7 @@ export const routes: Routes = [
     {path: 'emoji-selector', component: EmojiSelectorComponent},
 
 
-    {path: 'goals', component: GoalListComponent}
+    {path: 'goals', component: GoalListComponent},
     {path: 'emoji-selector', component: EmojiSelectorComponent},
     {path: 'emoji-display', component: EmojiDisplayComponent}
 ];
