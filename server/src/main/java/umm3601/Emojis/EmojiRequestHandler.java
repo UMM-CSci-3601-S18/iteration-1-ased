@@ -49,11 +49,12 @@ public class EmojiRequestHandler {
                 try {
                     BasicDBObject dbO = (BasicDBObject) o;
 
-                    String type = dbO.getString("type");
+                    String user = dbO.getString("user");
+                    String value = dbO.getString("value");
                     String time_stamp = dbO.getString("time_stamp");
 
-                    System.err.println("Submitting new emoji [type=" + type + ", time_stamp=" + time_stamp + "]");
-                    return emojiController.submitEmoji(type, time_stamp).toString();
+                    System.err.println("Submitting new emoji [value=" + value + ", time_stamp=" + time_stamp + "]");
+                    return emojiController.submitEmoji(user, value, time_stamp).toString();
                 } catch (NullPointerException e) {
                     System.err.println("A value was malformed or omitted, submit emoji request failed.");
                     return null;

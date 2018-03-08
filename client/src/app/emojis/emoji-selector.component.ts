@@ -15,6 +15,7 @@ export class EmojiSelectorComponent implements OnInit {
     // These are public so that tests can reference them (.spec.ts)
     public emojis: Emoji[];
 
+    private highlightedID: {'$oid': string} = { '$oid': '' };
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
@@ -33,23 +34,35 @@ export class EmojiSelectorComponent implements OnInit {
         return Date();
     }
 
-
+    isHighlighted(emoji: Emoji): boolean {
+        return emoji._id['$oid'] === this.highlightedID['$oid'];
+    }
 
     openDialog(): void {
         let value = this.emojiVal;
         var emojidoc: Emoji = {
             _id: '',
-            user: '',
-            value: '',
-            time_stamp: '',
+            user: this.emojiUser,
+            value: value,
+            time_stamp: Date(),
         };
+        console.log(this.emojiUser);
+        console.log(emojidoc);
 
-        emojidoc._id = '';
-        emojidoc.value = value;
+       /* emojidoc._id = '';
         emojidoc.user = this.emojiUser;
-        emojidoc.time_stamp = Date();
+        emojidoc.value = value;
+        emojidoc.time_stamp = Date();*/
 
-        this.emojiSelectorService.addNewEmoji(emojidoc);
+        this.emojiSelectorService.addNewEmoji(emojidoc).subscribe(
+            addEmojiResult => {
+                this.highlightedID = addEmojiResult;
+            },
+            err => {
+                // This should probably be turned into some sort of meaningful response.
+                console.log('There was an error adding the emoji.');
+                console.log('The error was ' + JSON.stringify(err));
+            });
 
         let dialogRef = this.dialog.open(EmojiSelectorResponseDialog, {
             width: '75vw',

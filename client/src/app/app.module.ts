@@ -46,6 +46,7 @@ import {AddGoalComponent} from'./goals/add-goal.component';
         EmojiSelectorComponent,
         EmojiSelectorResponseDialog,
 
+
         GoalListComponent,
         AddGoalComponent,
 

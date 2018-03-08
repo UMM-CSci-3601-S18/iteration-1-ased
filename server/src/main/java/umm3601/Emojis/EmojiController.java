@@ -51,9 +51,10 @@ public class EmojiController {
         return JSON.serialize(matchingEmojis);
     }
 
-    public String submitEmoji(String type, String time_stamp) {
+    public String submitEmoji(String user, String value, String time_stamp) {
         Document newEmoji = new Document();
-        newEmoji.append("type", type);
+        newEmoji.append("user", user);
+        newEmoji.append("value", value);
         newEmoji.append("time_stamp", time_stamp);
 
         System.out.println("The server went through submitEmoji in EmojiController");
@@ -61,7 +62,7 @@ public class EmojiController {
         try {
             emojiCollection.insertOne(newEmoji);
             ObjectId id = newEmoji.getObjectId("_id");
-            System.err.println("Successfully added new emoji [_id=" + id + ", type=" + type + ", time=" + time_stamp + "]");
+            System.err.println("Successfully added new emoji [_id=" + id + ", value=" + value + ", time=" + time_stamp + "]");
             return JSON.serialize(id);
         } catch (MongoException me) {
             me.printStackTrace();
