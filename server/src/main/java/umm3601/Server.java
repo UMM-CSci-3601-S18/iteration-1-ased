@@ -30,12 +30,9 @@ public class Server {
 
         EmojiController emojiController = new EmojiController(emojiDatabase);
         EmojiRequestHandler emojiRequestHandler = new EmojiRequestHandler(emojiController);
-//        MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
         MongoDatabase goalDatabase = mongoClient.getDatabase(goalDatabaseName);
 
 
-    //    UserController userController = new UserController(userDatabase);
-     //   UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
 
 
         GoalController goalController = new GoalController(goalDatabase);

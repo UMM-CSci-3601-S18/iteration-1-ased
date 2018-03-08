@@ -37,19 +37,25 @@ export class EmojiSelectorComponent implements OnInit {
 
     openDialog(): void {
         let value = this.emojiVal;
-        var emojidoc: Emoji = {
+        var newEmoji: Emoji = {
             _id: '',
             user: '',
             value: '',
             time_stamp: '',
         };
 
-        emojidoc._id = '';
-        emojidoc.value = value;
-        emojidoc.user = this.emojiUser;
-        emojidoc.time_stamp = Date();
+        console.log('The client went through openDialog in emoji-selector.component')
 
-        this.emojiSelectorService.addNewEmoji(emojidoc);
+        newEmoji._id = '';
+        newEmoji.value = value;
+        newEmoji.user = this.emojiUser;
+        newEmoji.time_stamp = Date();
+
+        console.log(newEmoji.value);
+        console.log(newEmoji.user);
+        console.log(newEmoji.time_stamp);
+
+        this.emojiSelectorService.addNewEmoji(newEmoji);
 
         let dialogRef = this.dialog.open(EmojiSelectorResponseDialog, {
             width: '75vw',

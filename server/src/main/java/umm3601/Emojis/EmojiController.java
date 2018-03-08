@@ -51,8 +51,9 @@ public class EmojiController {
         return JSON.serialize(matchingEmojis);
     }
 
-    public String submitEmoji(String type, String time_stamp) {
+    public String submitEmoji(String user, String type, String time_stamp) {
         Document newEmoji = new Document();
+        newEmoji.append("user", user);
         newEmoji.append("type", type);
         newEmoji.append("time_stamp", time_stamp);
 
