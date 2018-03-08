@@ -23,6 +23,8 @@ import {EmojiDisplayService} from './emojis/emoji-display.service';
 import {Routing} from './app.routes';
 import {APP_BASE_HREF} from '@angular/common';
 
+import {TrackerListService} from "./trackers/tracker-list.service";
+import {TrackerListComponent} from "./trackers/tracker-list.component";
 import {CustomModule} from './custom.module';
 
 
@@ -40,6 +42,7 @@ import {AddGoalComponent} from'./goals/add-goal.component';
     declarations: [
         AppComponent,
         HomeComponent,
+        TrackerListComponent,
 
         ResourcesComponent,
 
@@ -56,6 +59,7 @@ import {AddGoalComponent} from'./goals/add-goal.component';
 
         EmojiDisplayService,
         EmojiSelectorService,
+        TrackerListService,
 
         GoalListService,
         {provide: APP_BASE_HREF, useValue: '/'},

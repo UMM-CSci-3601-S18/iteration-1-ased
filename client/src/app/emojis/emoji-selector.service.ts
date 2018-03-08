@@ -37,22 +37,51 @@ export class EmojiSelectorService {
 
         // if value = sad, set response = happy link
         if (value == "happy"){
-            response = "../../assets/Happy-emoji.png";
+            response = "https://www.youtube.com/watch?v=BfFi4wba30g&feature=youtu.be";
         }
         else{
             if (value == "sad"){
-            response = "../../assets/Sad-emoji.png";
+            response = "https://www.youtube.com/watch?v=EtH9Yllzjcc";
             }
             else{
                 if (value == "angry"){
-            response = "../../assets/Angry-emoji.png";
+            response = "https://www.youtube.com/watch?v=Jyy0ra2WcQQ&feature=youtu.be";
                 }
                 else{
                     if (value == "neutral"){
-            response = "../../assets/Neutral-emoji.png";
+            response = "https://www.youtube.com/watch?v=uLu6iq0NaqU";
                     }
                     else {
-            response = "https://thumbs.gfycat.com/FewDearestFairybluebird-size_restricted.gif"
+            response = ""
+                    }
+                }
+            }
+        }
+
+        return response;
+    }
+
+    emojiResponder2(value: string): string {
+        let response = '';
+
+        // if value = sad, set response = happy link
+        if (value == "happy"){
+            response = "If It Fits, I Sits - The Supercut";
+        }
+        else{
+            if (value == "sad"){
+                response = "Try Not To Laugh Challenge - Funny Cat & Dog Vines compilation 2017";
+            }
+            else{
+                if (value == "angry"){
+                    response = "Guided Meditation - Blissful Deep Relaxation";
+                }
+                else{
+                    if (value == "neutral"){
+                        response = "This is Proven the Most Oddly Satisfying Video 2017";
+                    }
+                    else {
+                        response = ""
                     }
                 }
             }
